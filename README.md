@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Chemically Peculiar stars database GUI client
+
+## Backend part: [CP-Stars](https://github.com/Kuliak/cp-stars)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
