@@ -47,6 +47,10 @@ const en = () => {
           },
         },
       },
+      navigation: {
+        home: 'Home',
+        about: 'About',
+      },
     },
   };
 };
