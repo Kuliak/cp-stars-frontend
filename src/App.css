@@ -1,3 +1,9 @@
+:root {
+  --transparency-lvl: 0.6;
+  --general-text-color: aliceblue;
+}
+
+
 html {
   background: url(./assets/img/sky.jpg) no-repeat fixed center center;
   background-size: cover;
@@ -5,8 +11,15 @@ html {
 
 body {
   background: inherit;
+  background-color: unset !important;
 }
 
 header {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, var(--transparency-lvl));
+}
+
+.text-box-transparent {
+  background-color: rgba(0, 0, 0, var(--transparency-lvl));
+  border-radius: 1rem;
+  color: var(--general-text-color);
 }

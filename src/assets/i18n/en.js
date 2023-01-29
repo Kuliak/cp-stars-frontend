@@ -3,7 +3,7 @@ const en = () => {
     translation: {
       about: {
         project: {
-          project: 'Project',
+          name: 'Project',
           description: {
             created_on: 'Chemically Peculiar Stars Database project was created in May 2023.',
             created_for:
@@ -12,6 +12,10 @@ const en = () => {
               'society.',
             contributors: 'Contributors:',
           },
+        },
+        acknowledgements: {
+          name: 'Acknowledgements',
+          graphics: 'Project graphical design was developed with support of:',
         },
       },
     },
