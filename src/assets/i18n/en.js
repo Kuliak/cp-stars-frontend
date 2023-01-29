@@ -16,6 +16,12 @@ const en = () => {
         acknowledgements: {
           name: 'Acknowledgements',
           graphics: 'Project graphical design was developed with support of:',
+          server: {
+            resources_description: 'Server side of application is using:',
+            astrosearcher: {
+              purpose_description: 'obtaining general information about stars',
+            },
+          },
         },
       },
       footer: {
