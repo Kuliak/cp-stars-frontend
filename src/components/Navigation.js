@@ -1,6 +1,9 @@
 import { Nav, Navbar } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const Navigation = () => {
+  const { t } = useTranslation();
+
   return (
     <Navbar>
       <Navbar.Collapse id="responsive-navbar-nav">
@@ -8,12 +11,12 @@ const Navigation = () => {
           <Nav.Link
             href="/"
             className="ms-5 text-light">
-            Home
+            {t('navigation.home')}
           </Nav.Link>
           <Nav.Link
             href="/about"
             className="ms-4 text-light">
-            About
+            {t('navigation.about')}
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
