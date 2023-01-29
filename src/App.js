@@ -7,12 +7,12 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <Router>
+    <>
       <header>
         <Navigation />
       </header>
-      <body>
-        <div className="App">
+      <Router>
+        <div>
           <Routes>
             <Route
               exact
@@ -27,8 +27,8 @@ function App() {
           </Routes>
         </div>
         <Footer />
-      </body>
-    </Router>
+      </Router>
+    </>
   );
 }
 

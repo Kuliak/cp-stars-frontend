@@ -1,5 +1,11 @@
+import InputForm from './inputForm';
+
 const Home = () => {
-  return <div>Home test</div>;
+  return (
+    <div className="center">
+      <InputForm />
+    </div>
+  );
 };
 
 export default Home;
