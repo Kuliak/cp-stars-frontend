@@ -1,6 +1,8 @@
 :root {
-  --transparency-lvl: 0.6;
+  --box-border-radius: 1rem;
+  --box-border-radius-small: 0.75rem;
   --general-text-color: aliceblue;
+  --transparency-lvl: 0.6;
 }
 
 
@@ -19,36 +21,73 @@ header {
 }
 
 footer {
+  background-color: rgba(0, 0, 0, var(--transparency-lvl));
+  bottom: 0;
+  color: var(--general-text-color);
   position: fixed;
   padding: 10px 10px 0 10px;
-  bottom: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, var(--transparency-lvl));
   text-align: center;
-  color: var(--general-text-color);
+  width: 100%;
 }
 
-@media only screen and (max-width:720px) {
+@media only screen and (max-width:360px) {
+  .form-style {
+    border-radius: var(--box-border-radius-small);
+  }
+}
+
+@media only screen and (min-width: 360px) and (max-width:720px) {
   footer {
     font-size: 8px;
   }
-}
 
-@media only screen and (min-width:721px) {
-  footer {
-    font-size: 1vw;
+  .form-select {
+    min-width: 200px;
+    max-width: 200px;
   }
 }
 
-@media only screen and (min-width:1080px) {
+@media only screen and (min-width: 720px) and (max-width:1080px) {
+  footer {
+    font-size: 1vw;
+  }
+
+  .form-select {
+    min-width: 250px;
+    max-width: 250px;
+  }
+
+  .form-style {
+    border-radius: var(--box-border-radius);
+  }
+}
+
+@media only screen and (min-width: 1080px) and (max-width:2600px) {
   footer {
     font-size: 0.8vw;
   }
 }
 
+.app {
+  height: 100%;
+}
 
 .text-box-transparent {
   background-color: rgba(0, 0, 0, var(--transparency-lvl));
-  border-radius: 1rem;
+  border-radius: var(--box-border-radius);
   color: var(--general-text-color);
+}
+
+.form-style {
+  color: var(--general-text-color);
+  display: inline-block;
+  align-items:center;
+}
+
+.center {
+  display:flex;
+  height:100%;
+  width:100%;
+  justify-content:center;
+  align-items:center;
 }

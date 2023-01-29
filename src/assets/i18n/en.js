@@ -26,6 +26,21 @@ const en = () => {
           name: 'Masaryk University',
         },
       },
+      home: {
+        input_form: {
+          select_options: {
+            id: 'Id',
+            coordinates: 'Coordinates',
+          },
+          id: 'Id',
+          coordinates: {
+            name: 'Coordinates',
+            ra: 'ra',
+            dec: 'dec',
+            radius: 'radius',
+          },
+        },
+      },
     },
   };
 };
