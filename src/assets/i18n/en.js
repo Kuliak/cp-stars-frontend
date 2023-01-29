@@ -18,6 +18,14 @@ const en = () => {
           graphics: 'Project graphical design was developed with support of:',
         },
       },
+      footer: {
+        client_version: 'Client Version',
+      },
+      general: {
+        university: {
+          name: 'Masaryk University',
+        },
+      },
     },
   };
 };
