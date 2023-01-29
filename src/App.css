@@ -26,8 +26,26 @@ footer {
   background-color: rgba(0, 0, 0, var(--transparency-lvl));
   text-align: center;
   color: var(--general-text-color);
-  font-size: 1vw;
 }
+
+@media only screen and (max-width:720px) {
+  footer {
+    font-size: 8px;
+  }
+}
+
+@media only screen and (min-width:721px) {
+  footer {
+    font-size: 1vw;
+  }
+}
+
+@media only screen and (min-width:1080px) {
+  footer {
+    font-size: 0.8vw;
+  }
+}
+
 
 .text-box-transparent {
   background-color: rgba(0, 0, 0, var(--transparency-lvl));
