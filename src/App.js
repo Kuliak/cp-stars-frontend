@@ -1,30 +1,34 @@
-import logo from './assets/img/logo.svg';
+import React from 'react';
 import './App.css';
-import { useTranslation } from 'react-i18next';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { About, Home } from './pages/pages';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
 
 function App() {
-  const { t } = useTranslation();
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img
-          src={logo}
-          className="App-logo"
-          alt="logo"
-        />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer">
-          {t('hello')}
-        </a>
+    <Router>
+      <header>
+        <Navigation />
       </header>
-    </div>
+      <body>
+        <div className="App">
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={<Home />}
+            />
+            <Route
+              exact
+              path="/about"
+              element={<About />}
+            />
+          </Routes>
+        </div>
+        <Footer />
+      </body>
+    </Router>
   );
 }
 
