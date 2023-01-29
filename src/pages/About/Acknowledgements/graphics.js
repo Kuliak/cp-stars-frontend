@@ -11,6 +11,7 @@ const Graphics = () => {
           <a
             className="link-warning text-decoration-none"
             target="_blank"
+            rel="noreferrer"
             href="https://getbootstrap.com/">
             Bootstrap
           </a>
