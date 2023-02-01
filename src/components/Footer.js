@@ -7,9 +7,9 @@ const Footer = () => {
   return (
     <footer>
       <div>
-        <p>{`${new Date().getFullYear()}, ${t('general.university.name')}, ${t(
+        {`${new Date().getFullYear()}, ${t('general.university.name')}, ${t(
           'footer.client_version'
-        )}:${packageInfo.version}`}</p>
+        )}:${packageInfo.version}`}
       </div>
     </footer>
   );

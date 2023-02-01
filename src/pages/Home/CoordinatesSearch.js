@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import { DEFAULT_RADIUS } from '../../components/Constants';
+import { DEFAULT_RADIUS } from '../../shared/Constants';
 import { useTranslation } from 'react-i18next';
 
 const CoordinatesSearch = () => {

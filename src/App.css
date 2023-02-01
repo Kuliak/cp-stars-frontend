@@ -13,7 +13,8 @@
 
 
 html {
-  background: url(./assets/img/sky.jpg) no-repeat fixed center center;
+  background: whitesmoke;
+  /*background: url(./assets/img/sky.jpg) no-repeat fixed center center;*/
   background-size: cover;
 }
 
@@ -31,9 +32,9 @@ footer {
   bottom: 0;
   color: var(--general-text-color);
   position: fixed;
-  padding: 10px 10px 0 10px;
   text-align: center;
   width: 100%;
+  margin: 0;
 }
 
 @media only screen and (max-width:360px) {
@@ -48,6 +49,11 @@ footer {
   .form-style {
     border-radius: var(--box-border-radius-small);
   }
+
+  footer {
+    font-size: 8px;
+    padding: 5px 8px 5px 8px;
+  }
 }
 
 @media only screen and (min-width: 360px) and (max-width:720px) {
@@ -61,6 +67,7 @@ footer {
 
   footer {
     font-size: 8px;
+    padding: 5px 8px 5px 8px;
   }
 
   .form-select {
@@ -80,6 +87,7 @@ footer {
 
   footer {
     font-size: 1vw;
+    padding: 5px 8px 5px 8px;
   }
 
   .form-select {
@@ -103,6 +111,7 @@ footer {
 
   footer {
     font-size: 0.8vw;
+    padding: 3px 8px 3px 8px;
   }
 }
 
