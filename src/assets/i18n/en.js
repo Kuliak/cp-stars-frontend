@@ -24,6 +24,11 @@ const en = () => {
           },
         },
       },
+      drawer: {
+        home: 'Home',
+        about: 'About',
+        manual: 'Manual',
+      },
       footer: {
         client_version: 'Client Version',
       },
@@ -47,9 +52,8 @@ const en = () => {
           },
         },
       },
-      navigation: {
-        home: 'Home',
-        about: 'About',
+      project: {
+        title: 'CP-Stars',
       },
     },
   };
