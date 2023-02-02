@@ -37,82 +37,12 @@ footer {
   margin: 0;
 }
 
-@media only screen and (max-width:360px) {
-  h3 {
-    margin-bottom: var(--h3-margin-bottom-small) !important;
-  }
-
-  h5 {
-    margin-bottom: var(--h5-margin-bottom-small) !important;
-  }
-
-  .form-style {
-    border-radius: var(--box-border-radius-small);
-  }
-
-  footer {
-    font-size: 8px;
-    padding: 5px 8px 5px 8px;
-  }
-}
-
-@media only screen and (min-width: 360px) and (max-width:720px) {
-  h3 {
-    margin-bottom: var(--h3-margin-bottom-small) !important;
-  }
-
-  h5 {
-    margin-bottom: var(--h5-margin-bottom-small) !important;
-  }
-
-  footer {
-    font-size: 8px;
-    padding: 5px 8px 5px 8px;
-  }
-
-  .form-select {
-    min-width: 200px;
-    max-width: 200px;
-  }
-}
-
-@media only screen and (min-width: 720px) and (max-width:1080px) {
-  h3 {
-    margin-bottom: var(--h3-margin-bottom) !important;
-  }
-
-  h5 {
-    margin-bottom: var(--h5-margin-bottom) !important;
-  }
-
-  footer {
-    font-size: 1vw;
-    padding: 5px 8px 5px 8px;
-  }
-
-  .form-select {
-    min-width: 250px;
-    max-width: 250px;
-  }
-
-  .form-style {
-    border-radius: var(--box-border-radius);
-  }
-}
-
-@media only screen and (min-width: 1080px) and (max-width:2600px) {
-  h3 {
-    margin-bottom: var(--h3-margin-bottom) !important;
-  }
-
-  h5 {
-    margin-bottom: var(--h5-margin-bottom) !important;
-  }
-
-  footer {
-    font-size: 0.8vw;
-    padding: 3px 8px 3px 8px;
-  }
+.center {
+  display:flex;
+  height:100%;
+  width:100%;
+  justify-content:center;
+  align-items:center;
 }
 
 .app {
@@ -131,10 +61,115 @@ footer {
   align-items:center;
 }
 
-.center {
-  display:flex;
-  height:100%;
-  width:100%;
-  justify-content:center;
-  align-items:center;
+
+/***********************************
+ ***********************************
+ **                               **
+ **    MEDIA - BASED   QUERIES    **
+ **                               **
+ ***********************************
+ ***********************************/
+
+@media only screen and (max-width:360px) {
+  h3 {
+    margin-bottom: var(--h3-margin-bottom-small) !important;
+  }
+
+  h5 {
+    margin-bottom: var(--h5-margin-bottom-small) !important;
+  }
+
+  .center {
+    padding: 10px 15px;
+  }
+
+  .form-style {
+    border-radius: var(--box-border-radius-small);
+  }
+
+  footer {
+    font-size: 8px;
+    padding: 5px 8px 5px 8px;
+  }
 }
+
+/***************************************************************/
+/***************************************************************/
+
+@media only screen and (min-width: 360px) and (max-width:720px) {
+  h3 {
+    margin-bottom: var(--h3-margin-bottom-small) !important;
+  }
+
+  h5 {
+    margin-bottom: var(--h5-margin-bottom-small) !important;
+  }
+
+  .center {
+    padding: 15px 20px;
+  }
+
+  footer {
+    font-size: 8px;
+    padding: 5px 8px 5px 8px;
+  }
+
+  .form-select {
+    min-width: 200px;
+    max-width: 200px;
+  }
+}
+
+/***************************************************************/
+/***************************************************************/
+
+@media only screen and (min-width: 720px) and (max-width:1080px) {
+  h3 {
+    margin-bottom: var(--h3-margin-bottom) !important;
+  }
+
+  h5 {
+    margin-bottom: var(--h5-margin-bottom) !important;
+  }
+
+  .center {
+    padding: 15px 20px;
+  }
+
+  footer {
+    font-size: 1vw;
+    padding: 5px 8px 5px 8px;
+  }
+
+  .form-select {
+    min-width: 250px;
+    max-width: 250px;
+  }
+
+  .form-style {
+    border-radius: var(--box-border-radius);
+  }
+}
+
+/***************************************************************/
+/***************************************************************/
+
+@media only screen and (min-width: 1080px) and (max-width:2600px) {
+  h3 {
+    margin-bottom: var(--h3-margin-bottom) !important;
+  }
+
+  h5 {
+    margin-bottom: var(--h5-margin-bottom) !important;
+  }
+
+  .center {
+    padding: 20px 30px;
+  }
+
+  footer {
+    font-size: 0.8vw;
+    padding: 3px 8px 3px 8px;
+  }
+}
+
