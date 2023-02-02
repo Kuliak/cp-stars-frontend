@@ -2,6 +2,7 @@
   "name": "cp-stars-frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8081",
   "dependencies": {
     "@emotion/react": "11.10.5",
     "@emotion/styled": "11.10.5",
@@ -12,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "5.2.3",
     "i18next": "^22.4.9",
+    "react-material-ui-searchbar": "1.0.4",
     "prettier": "^2.8.3",
     "react": "^18.2.0",
     "react-bootstrap": "2.7.0",
