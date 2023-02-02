@@ -3,7 +3,7 @@ import Acknowledgements from './Acknowledgements/acknowledgements';
 
 const About = () => {
   return (
-    <div className="text-box-transparent w-75 p-5 m-5 mx-auto">
+    <div className="w-100 p-5">
       <ProjectDescription />
       <Acknowledgements />
     </div>
