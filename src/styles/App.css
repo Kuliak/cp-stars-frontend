@@ -1,6 +1,10 @@
 :root {
   --box-border-radius: 1rem;
   --box-border-radius-small: 0.75rem;
+
+  --footer-font-size: 10px;
+  --footer-padding-Y: 4px;
+
   --general-text-color: aliceblue;
 
   --h3-margin-bottom: 2rem;
@@ -23,6 +27,12 @@ body {
   background-color: unset !important;
 }
 
+button {
+  display: flex !important;
+  align-items: flex-end !important;
+  align-content: flex-end !important;
+}
+
 header {
   background-color: rgba(0, 0, 0, var(--transparency-lvl));
 }
@@ -34,7 +44,17 @@ footer {
   position: fixed;
   text-align: center;
   width: 100%;
-  margin: 0;
+  margin: 0 auto;
+  font-size: var(--footer-font-size) !important;
+  line-height: 1;
+  padding:
+          var(--footer-padding-Y)
+          0
+          var(--footer-padding-Y)
+          0
+  !important;
+
+
 }
 
 .center {
@@ -86,11 +106,6 @@ footer {
   .form-style {
     border-radius: var(--box-border-radius-small);
   }
-
-  footer {
-    font-size: 8px;
-    padding: 5px 8px 5px 8px;
-  }
 }
 
 /***************************************************************/
@@ -107,11 +122,6 @@ footer {
 
   .center {
     padding: 15px 20px;
-  }
-
-  footer {
-    font-size: 8px;
-    padding: 5px 8px 5px 8px;
   }
 
   .form-select {
@@ -134,11 +144,6 @@ footer {
 
   .center {
     padding: 15px 20px;
-  }
-
-  footer {
-    font-size: 1vw;
-    padding: 5px 8px 5px 8px;
   }
 
   .form-select {
@@ -165,11 +170,6 @@ footer {
 
   .center {
     padding: 20px 30px;
-  }
-
-  footer {
-    font-size: 0.8vw;
-    padding: 3px 8px 3px 8px;
   }
 }
 

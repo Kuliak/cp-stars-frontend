@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -22,7 +22,14 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import { TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
+import {
+  DEFAULT_RESET_DEC,
+  DEFAULT_RESET_RA,
+  DEFAULT_RESET_RADIUS,
+  PAGING,
+} from '../../shared/Constants';
+import ClearIcon from '@mui/icons-material/Clear';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -177,7 +184,7 @@ function EnhancedTableToolbar(props) {
           variant="h6"
           id="tableTitle"
           component="div">
-          CP Stars
+          {/*CP Stars*/}
         </Typography>
       )}
 
@@ -211,18 +218,55 @@ const BasicInfoStarsTable = ({ originalRows }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [rows, setRows] = useState(originalRows);
 
-  const [searched, setSearched] = useState('s');
+  const [searched, setSearched] = useState('');
+  const [filterRA, setFilterRA] = useState(DEFAULT_RESET_RA);
+  const [filterDec, setFilterDec] = useState(DEFAULT_RESET_DEC);
+  const [filterRadius, setFilterRadius] = useState(DEFAULT_RESET_RADIUS);
 
-  const requestSearch = (searchedVal) => {
-    console.log('TEST');
-    setSearched(searchedVal);
-    console.log('Search requested for: ', searchedVal);
-    setRows(
-      originalRows.filter((row) => {
-        console.log('    NAME: ', row.name);
-        return row.name.toLowerCase().includes(searchedVal.toLowerCase());
-      })
-    );
+  const resetFilter = () => {
+    setSearched('');
+    setFilterRA(DEFAULT_RESET_RA);
+    setFilterDec(DEFAULT_RESET_DEC);
+    setFilterRadius(DEFAULT_RESET_RADIUS);
+    applyFilter('', DEFAULT_RESET_RA, DEFAULT_RESET_DEC, DEFAULT_RESET_RADIUS);
+  };
+
+  const applyFilter = (name, ra, dec, radius) => {
+    let filteredRows = originalRows;
+    console.log(`FILTER: ${name} ${ra} ${dec} ${radius}`);
+
+    if (ra !== DEFAULT_RESET_RA && dec !== DEFAULT_RESET_DEC && radius !== DEFAULT_RESET_RADIUS) {
+      filteredRows = filteredRows.filter((row) => {
+        return (row.icrsRightAscension - ra) ** 2 + (row.icrsDeclination - dec) ** 2 < radius ** 2;
+      });
+    }
+
+    filteredRows = filteredRows.filter((row) => {
+      // console.log('    NAME: ', row.name);
+      return row.name.toLowerCase().includes(name.toLowerCase());
+    });
+
+    setRows(filteredRows);
+  };
+
+  const updateName = (value) => {
+    setSearched(value);
+    applyFilter(value, filterRA, filterDec, filterRadius);
+  };
+
+  const updateRA = (value) => {
+    setFilterRA(value);
+    applyFilter(searched, value, filterDec, filterRadius);
+  };
+
+  const updateDec = (value) => {
+    setFilterDec(value);
+    applyFilter(searched, filterRA, value, filterRadius);
+  };
+
+  const updateRadius = (value) => {
+    setFilterRadius(value);
+    applyFilter(searched, filterRA, filterDec, value);
   };
 
   const handleRequestSort = (event, property) => {
@@ -278,94 +322,145 @@ const BasicInfoStarsTable = ({ originalRows }) => {
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  useEffect(() => {}, [originalRows, rows, searched]);
-
   return (
     <Box sx={{ width: '100%' }}>
+      <h1 className="mb-5">Chemically Peculiar Stars</h1>
       <>
         {rows && (
           <>
-            <div className={'mb-3'}>
+            <Box
+              alignItems={'flex-end'}
+              justifyContent={'flex-start'}
+              display={'flex'}
+              sx={{ marginBottom: '10px' }}>
+              <Button
+                variant="contained"
+                endIcon={<ClearIcon />}
+                onClick={resetFilter}
+                sx={{ bottom: 0, marginRight: '10px', padding: '12px 16px 12px 16px' }}>
+                <div>Reset</div>
+              </Button>
               <TextField
                 id="search-stars-input"
                 label="Search"
                 type="search"
                 autoComplete="search-stars"
                 variant="filled"
-                onChange={(searchVal) => requestSearch(searchVal.target.value)}
+                value={searched}
+                sx={{ marginRight: '25px' }}
+                size={'small'}
+                onChange={(searchVal) => updateName(searchVal.target.value)}
               />
-            </div>
-
-            <Paper sx={{ width: '100%', mb: 2 }}>
-              <EnhancedTableToolbar numSelected={selected.length} />
-              <TableContainer>
-                <Table
-                  sx={{ minWidth: 750 }}
-                  aria-labelledby="tableTitle"
-                  size={dense ? 'small' : 'medium'}>
-                  <EnhancedTableHead
-                    numSelected={selected.length}
-                    order={order}
-                    orderBy={orderBy}
-                    onSelectAllClick={handleSelectAllClick}
-                    onRequestSort={handleRequestSort}
-                    rowCount={rows.length}
-                  />
-                  <TableBody>
-                    {stableSort(rows, getComparator(order, orderBy))
-                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                      .map((row, index) => {
-                        const isItemSelected = isSelected(row.id);
-                        const labelId = `enhanced-table-checkbox-${index}`;
-
-                        return (
-                          <TableRow
-                            hover
-                            onClick={(event) => handleClick(event, row.id)}
-                            role="checkbox"
-                            aria-checked={isItemSelected}
-                            tabIndex={-1}
-                            key={row.id}
-                            selected={isItemSelected}>
-                            <TableCell padding="checkbox">
-                              <Checkbox
-                                color="primary"
-                                checked={isItemSelected}
-                                inputProps={{
-                                  'aria-labelledby': labelId,
-                                }}
-                              />
-                            </TableCell>
-                            <TableCell align="left">{row.id}</TableCell>
-                            <TableCell align="left">{row.name}</TableCell>
-                            <TableCell align="left">{row.icrsRightAscension}</TableCell>
-                            <TableCell align="left">{row.icrsDeclination}</TableCell>
-                            <TableCell align="left">{row.galacticLongitude}</TableCell>
-                            <TableCell align="left">{row.galacticLatitude}</TableCell>
-                          </TableRow>
-                        );
-                      })}
-                    {emptyRows > 0 && (
-                      <TableRow
-                        style={{
-                          height: (dense ? 33 : 53) * emptyRows,
-                        }}>
-                        <TableCell colSpan={6} />
-                      </TableRow>
-                    )}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25, 50, 100]}
-                component="div"
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
+              <TextField
+                id="filter-stars-ra"
+                label="RA"
+                type="search"
+                autoComplete="filter-stars-ra"
+                variant="filled"
+                value={filterRA === DEFAULT_RESET_RA ? '' : filterRA}
+                sx={{ width: 100, padding: '25px 0px 0px 25 px', marginRight: '10px' }}
+                size={'small'}
+                onChange={(searchVal) => updateRA(searchVal.target.value)}
               />
-            </Paper>
+              <TextField
+                id="filter-stars-dec"
+                label="Dec"
+                type="search"
+                autoComplete="filter-stars-dec"
+                variant="filled"
+                value={filterDec === DEFAULT_RESET_DEC ? '' : filterDec}
+                sx={{ width: 100, padding: '25px 0px 0px 25 px', marginRight: '10px' }}
+                size={'small'}
+                onChange={(searchVal) => updateDec(searchVal.target.value)}
+              />
+              <TextField
+                id="filter-stars-radius"
+                label="Radius"
+                type="search"
+                autoComplete="filter-stars-radius"
+                variant="filled"
+                value={filterRadius === DEFAULT_RESET_RADIUS ? '' : filterRadius}
+                sx={{ width: 80, padding: '25px 0px 0px 25 px', marginRight: '10px' }}
+                size={'small'}
+                onChange={(searchVal) => updateRadius(searchVal.target.value)}
+              />
+            </Box>
+
+            <Box
+              alignItems={'flex-end'}
+              justifyContent={'flex-start'}
+              display={'flex'}>
+              <Paper sx={{ width: '100%', mb: 2 }}>
+                <EnhancedTableToolbar numSelected={selected.length} />
+                <TableContainer>
+                  <Table
+                    sx={{ minWidth: 750 }}
+                    aria-labelledby="tableTitle"
+                    size={dense ? 'small' : 'medium'}>
+                    <EnhancedTableHead
+                      numSelected={selected.length}
+                      order={order}
+                      orderBy={orderBy}
+                      onSelectAllClick={handleSelectAllClick}
+                      onRequestSort={handleRequestSort}
+                      rowCount={rows.length}
+                    />
+                    <TableBody>
+                      {stableSort(rows, getComparator(order, orderBy))
+                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        .map((row, index) => {
+                          const isItemSelected = isSelected(row.id);
+                          const labelId = `enhanced-table-checkbox-${index}`;
+
+                          return (
+                            <TableRow
+                              hover
+                              onClick={(event) => handleClick(event, row.id)}
+                              role="checkbox"
+                              aria-checked={isItemSelected}
+                              tabIndex={-1}
+                              key={row.id}
+                              selected={isItemSelected}>
+                              <TableCell padding="checkbox">
+                                <Checkbox
+                                  color="primary"
+                                  checked={isItemSelected}
+                                  inputProps={{
+                                    'aria-labelledby': labelId,
+                                  }}
+                                />
+                              </TableCell>
+                              <TableCell align="left">{row.id}</TableCell>
+                              <TableCell align="left">{row.name}</TableCell>
+                              <TableCell align="left">{row.icrsRightAscension}</TableCell>
+                              <TableCell align="left">{row.icrsDeclination}</TableCell>
+                              <TableCell align="left">{row.galacticLongitude}</TableCell>
+                              <TableCell align="left">{row.galacticLatitude}</TableCell>
+                            </TableRow>
+                          );
+                        })}
+                      {emptyRows > 0 && (
+                        <TableRow
+                          style={{
+                            height: (dense ? 33 : 53) * emptyRows,
+                          }}>
+                          <TableCell colSpan={6} />
+                        </TableRow>
+                      )}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+                <TablePagination
+                  rowsPerPageOptions={PAGING.DEFAULT}
+                  component="div"
+                  count={rows.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+              </Paper>
+            </Box>
           </>
         )}
       </>

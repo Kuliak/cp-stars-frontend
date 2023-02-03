@@ -1,0 +1,57 @@
+:root {
+    --component-font-size-small: 14px;
+    --component-font-size-medium: 14px;
+
+    --line-height-small: 36px;
+
+    --small-line-padding-Y-small: calc((var(--line-height-small) - var(--component-font-size-small)) / 2);
+
+    --button-font-size: var(--component-font-size-small);
+    --button-padding-Y: calc((var(--line-height-small) - var(--button-font-size)) / 2);
+
+    --text-field-font-size: var(--component-font-size-small);
+    --text-field-padding-Y: calc(var(--line-height-small) - var(--text-field-font-size));
+}
+
+/****************/
+/**   BUTTON   **/
+/****************/
+.css-h89nbv-MuiButtonBase-root-MuiButton-root {
+    font-size: var(--button-font-size) !important;
+    line-height: 1 !important;
+    padding:
+            var(--button-padding-Y)
+            calc(var(--button-padding-Y) * 2)
+            var(--button-padding-Y)
+            calc(var(--button-padding-Y) * 2)
+    !important;
+}
+
+/**************/
+/**   ICON   **/
+/**************/
+.css-9tj150-MuiButton-endIcon>*:nth-of-type(1) {
+    /*font-size: var(--icon-size-small) !important;*/
+    font-size: var(--component-font-size-medium) !important;
+}
+
+
+/***************/
+/**   INPUT   **/
+/***************/
+.css-cq1fi-MuiInputBase-input-MuiFilledInput-input {
+    padding:
+            var(--text-field-padding-Y)
+            6px
+            0
+            10px
+    !important;
+    font-size: var(--text-field-font-size) !important;
+    line-height: 1 !important;
+    height: 1rem !important;
+}
+
+.MuiInputLabel-root {
+    font-size: var(--text-field-font-size) !important;
+    padding-bottom: 0 !important;
+}
