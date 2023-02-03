@@ -5,6 +5,7 @@ import { getStarDetails } from '../../services/DatabaseService';
 import { useParams } from 'react-router-dom';
 import Coordinates from './Coordinates';
 import Paper from '@mui/material/Paper';
+import Magnitudes from '../../components/Data/Magnitudes';
 
 const StarDetails = () => {
   const { t } = useTranslation();
@@ -27,7 +28,7 @@ const StarDetails = () => {
       {details && (
         <>
           <Paper className="p-4">
-            <div className="fs-4 mb-5">
+            <div className="fs-5 mb-5">
               <div
                 className="fw-bold me-2"
                 style={{ display: 'inline-block' }}>
@@ -41,6 +42,10 @@ const StarDetails = () => {
               galacticLongitude={details.galacticLongitude}
               galacticLatitude={details.galacticLatitude}
             />
+          </Paper>
+
+          <Paper className="mt-4">
+            <Magnitudes magnitudes={[]} />
           </Paper>
         </>
       )}

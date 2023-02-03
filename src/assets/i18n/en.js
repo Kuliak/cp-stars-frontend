@@ -63,6 +63,13 @@ const en = () => {
           galactic_longitude: 'Galactic Longitude',
           galactic_latitude: 'Galactic Latitude',
         },
+        magnitudes: {
+          title: 'Magnitudes',
+          band: 'band',
+          value: 'value',
+          error: 'error',
+          quality: 'quality',
+        },
       },
     },
   };
