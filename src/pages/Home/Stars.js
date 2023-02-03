@@ -30,6 +30,8 @@ import {
   PAGING,
 } from '../../shared/Constants';
 import ClearIcon from '@mui/icons-material/Clear';
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../shared/paths';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -210,6 +212,8 @@ EnhancedTableToolbar.propTypes = {
 };
 
 const BasicInfoStarsTable = ({ originalRows }) => {
+  const navigate = useNavigate();
+
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('id');
   const [selected, setSelected] = React.useState([]);
@@ -284,7 +288,8 @@ const BasicInfoStarsTable = ({ originalRows }) => {
     setSelected([]);
   };
 
-  const handleClick = (event, name) => {
+  const handleCheckboxClick = (event, name) => {
+    event.stopPropagation();
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
 
@@ -415,12 +420,13 @@ const BasicInfoStarsTable = ({ originalRows }) => {
                           return (
                             <TableRow
                               hover
-                              onClick={(event) => handleClick(event, row.id)}
+                              onClick={() => navigate(`${paths.starDetails}/${row.id}`)}
                               role="checkbox"
                               aria-checked={isItemSelected}
                               tabIndex={-1}
                               key={row.id}
-                              selected={isItemSelected}>
+                              selected={isItemSelected}
+                              style={{ cursor: 'pointer' }}>
                               <TableCell padding="checkbox">
                                 <Checkbox
                                   color="primary"
@@ -428,6 +434,7 @@ const BasicInfoStarsTable = ({ originalRows }) => {
                                   inputProps={{
                                     'aria-labelledby': labelId,
                                   }}
+                                  onClick={(event) => handleCheckboxClick(event, row.id)}
                                 />
                               </TableCell>
                               <TableCell align="left">{row.id}</TableCell>

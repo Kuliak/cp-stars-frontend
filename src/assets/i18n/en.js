@@ -55,6 +55,15 @@ const en = () => {
       project: {
         title: 'CP-Stars',
       },
+      star_details: {
+        name: 'Name',
+        coordinates: {
+          ra: 'Right Ascension',
+          dec: 'Declination',
+          galactic_longitude: 'Galactic Longitude',
+          galactic_latitude: 'Galactic Latitude',
+        },
+      },
     },
   };
 };
