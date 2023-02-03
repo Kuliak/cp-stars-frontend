@@ -1,6 +1,5 @@
 :root {
     --component-font-size-small: 14px;
-    --component-font-size-medium: 14px;
 
     --line-height-small: 36px;
 
@@ -9,8 +8,12 @@
     --button-font-size: var(--component-font-size-small);
     --button-padding-Y: calc((var(--line-height-small) - var(--button-font-size)) / 2);
 
+    --table-cell-font-size: calc(var(--component-font-size-small));
+    --table-cell-padding-Y: calc((var(--line-height-small) - var(--table-cell-font-size)) / 2);
+
     --text-field-font-size: var(--component-font-size-small);
     --text-field-padding-Y: calc(var(--line-height-small) - var(--text-field-font-size));
+
 }
 
 /****************/
@@ -32,7 +35,7 @@
 /**************/
 .css-9tj150-MuiButton-endIcon>*:nth-of-type(1) {
     /*font-size: var(--icon-size-small) !important;*/
-    font-size: var(--component-font-size-medium) !important;
+    font-size: var(--component-font-size-small) !important;
 }
 
 
@@ -61,4 +64,18 @@
 /**************/
 .css-a5rdam-MuiGrid-root>.MuiGrid-item {
     padding-top: 0 !important;
+}
+
+/***************/
+/**   TABLE   **/
+/***************/
+.css-1ygcj2i-MuiTableCell-root {
+    font-size: var(--table-cell-font-size);
+    line-height: 1 !important;
+    padding:
+        var(--table-cell-padding-Y)
+        calc(var(--table-cell-padding-Y) * 2)
+        var(--table-cell-padding-Y)
+        calc(var(--table-cell-padding-Y) * 2)
+    !important;
 }
