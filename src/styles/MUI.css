@@ -55,3 +55,10 @@
     font-size: var(--text-field-font-size) !important;
     padding-bottom: 0 !important;
 }
+
+/**************/
+/**   GRID   **/
+/**************/
+.css-a5rdam-MuiGrid-root>.MuiGrid-item {
+    padding-top: 0 !important;
+}

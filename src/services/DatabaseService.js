@@ -4,12 +4,16 @@ const getBasicInfoForAllStars = () => {
   const options = {
     method: 'GET',
   };
-
-  const resp = fetch(databaseURLs.getBasicInfoForAllStars, options).then((response) =>
-    response.json()
-  );
-  console.log(resp);
   return fetch(databaseURLs.getBasicInfoForAllStars, options).then((response) => response.json());
 };
 
-export { getBasicInfoForAllStars };
+const getStarDetails = (id) => {
+  const options = {
+    method: 'GET',
+  };
+  return fetch(`${databaseURLs.getBasicInfoForAllStars}/${id}`, options).then((response) =>
+    response.json()
+  );
+};
+
+export { getBasicInfoForAllStars, getStarDetails };
