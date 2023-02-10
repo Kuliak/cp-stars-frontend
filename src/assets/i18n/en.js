@@ -66,6 +66,7 @@ const en = () => {
           value: 'value',
         },
         identifiers: {
+          external: 'External',
           title: 'Identifiers',
         },
         magnitudes: {

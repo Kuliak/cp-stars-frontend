@@ -1,17 +1,17 @@
-import { databaseURLs } from '../shared/databaseURLs';
+import { URLPaths } from '../shared/URLPaths';
 
 const getBasicInfoForAllStars = () => {
   const options = {
     method: 'GET',
   };
-  return fetch(databaseURLs.getBasicInfoForAllStars, options).then((response) => response.json());
+  return fetch(URLPaths.getBasicInfoForAllStars, options).then((response) => response.json());
 };
 
 const getStarDetails = (id) => {
   const options = {
     method: 'GET',
   };
-  return fetch(`${databaseURLs.getBasicInfoForAllStars}/${id}`, options).then((response) =>
+  return fetch(`${URLPaths.getBasicInfoForAllStars}/${id}`, options).then((response) =>
     response.json()
   );
 };
