@@ -40,22 +40,24 @@ const Magnitudes = ({ magnitudes }) => {
                   in={open}
                   timeout="auto"
                   unmountOnExit>
-                  <Table>
+                  <Table className="denseTable">
                     <TableHead>
                       <TableRow>
                         <TableCell>{t('star_details.magnitudes.band')}</TableCell>
                         <TableCell>{t('star_details.magnitudes.value')}</TableCell>
                         <TableCell>{t('star_details.magnitudes.error')}</TableCell>
-                        <TableCell>{t('star_details.magnitudes.quality')}</TableCell>
+                        <TableCell style={{ textAlign: 'center' }}>
+                          {t('star_details.magnitudes.quality')}
+                        </TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       {magnitudes.map((row) => (
-                        <TableRow>
+                        <TableRow key={row.id}>
                           <TableCell>{row.band}</TableCell>
                           <TableCell>{row.value}</TableCell>
                           <TableCell>{row.error}</TableCell>
-                          <TableCell>
+                          <TableCell style={{ textAlign: 'center' }}>
                             <ColoredScaler
                               type={'char'}
                               best={'A'}

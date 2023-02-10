@@ -58,10 +58,15 @@ const en = () => {
       star_details: {
         name: 'Name',
         coordinates: {
-          ra: 'Right Ascension',
           dec: 'Declination',
+          error: 'error',
           galactic_longitude: 'Galactic Longitude',
           galactic_latitude: 'Galactic Latitude',
+          ra: 'Right Ascension',
+          value: 'value',
+        },
+        identifiers: {
+          title: 'Identifiers',
         },
         magnitudes: {
           title: 'Magnitudes',
