@@ -10,6 +10,7 @@
 
     --table-cell-font-size: calc(var(--component-font-size-small));
     --table-cell-padding-Y: calc((var(--line-height-small) - var(--table-cell-font-size)) / 2);
+    --table-cell-padding-Y-dense: calc((0.9 * var(--line-height-small) - var(--table-cell-font-size)) / 2);
 
     --text-field-font-size: var(--component-font-size-small);
     --text-field-padding-Y: calc(var(--line-height-small) - var(--text-field-font-size));
@@ -69,13 +70,40 @@
 /***************/
 /**   TABLE   **/
 /***************/
-.css-1ygcj2i-MuiTableCell-root {
+/*.css-1ygcj2i-MuiTableCell-root {*/
+/*    font-size: var(--table-cell-font-size);*/
+/*    line-height: 1 !important;*/
+/*    padding:*/
+/*        var(--table-cell-padding-Y)*/
+/*        calc(var(--table-cell-padding-Y) * 2)*/
+/*        var(--table-cell-padding-Y)*/
+/*        calc(var(--table-cell-padding-Y) * 2)*/
+/*    !important;*/
+/*}*/
+
+.denseTable {
+    width: fit-content;
+}
+
+.denseTable > tbody > tr > td {
     font-size: var(--table-cell-font-size);
     line-height: 1 !important;
     padding:
-        var(--table-cell-padding-Y)
-        calc(var(--table-cell-padding-Y) * 2)
-        var(--table-cell-padding-Y)
-        calc(var(--table-cell-padding-Y) * 2)
+            var(--table-cell-padding-Y-dense)
+            calc(var(--table-cell-padding-Y-dense) * 2)
+            var(--table-cell-padding-Y-dense)
+            calc(var(--table-cell-padding-Y-dense) * 2)
+    !important;
+}
+
+.denseTable > thead > tr > th {
+    font-size: var(--table-cell-font-size);
+    font-weight: 600;
+    line-height: 1 !important;
+    padding:
+            var(--table-cell-padding-Y-dense)
+            calc(var(--table-cell-padding-Y-dense) * 2)
+            var(--table-cell-padding-Y-dense)
+            calc(var(--table-cell-padding-Y-dense) * 2)
     !important;
 }
