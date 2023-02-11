@@ -49,7 +49,10 @@ const StarDetails = () => {
 
           <Paper className="mt-4">
             <Magnitudes magnitudes={details.magnitudes} />
-            <Identifiers identifiers={details.identifiers} />
+            <Identifiers
+              identifiers={details.identifiers}
+              objectName={details.name}
+            />
           </Paper>
         </>
       )}
