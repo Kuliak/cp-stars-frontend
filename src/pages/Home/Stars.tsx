@@ -181,7 +181,7 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
   const [selected, setSelected] = useState<readonly number[]>([]);
   const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const [rows, setRows] = useState<StarBasicInfo[]>(props.originalRows);
 
@@ -403,7 +403,7 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
                 </Table>
               </TableContainer>
               <TablePagination
-                rowsPerPageOptions={[5, 10, 25, 50, 100]}
+                rowsPerPageOptions={[10, 25, 50, 100]}
                 component="div"
                 count={rows.length}
                 rowsPerPage={rowsPerPage}
