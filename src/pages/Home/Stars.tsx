@@ -240,6 +240,7 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
   };
 
   const handleCheckboxClick = (event: React.MouseEvent<unknown>, id: number) => {
+    event.stopPropagation();
     const selectedIndex = selected.indexOf(id);
     let newSelected: readonly number[] = [];
 
