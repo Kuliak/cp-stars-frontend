@@ -43,7 +43,7 @@
 /***************/
 /**   INPUT   **/
 /***************/
-.css-cq1fi-MuiInputBase-input-MuiFilledInput-input {
+.css-cq1fi-MuiInputBase-input-MuiFilledInput-input, .css-c5v1qu-MuiInputBase-input-MuiFilledInput-input {
     padding:
             var(--text-field-padding-Y)
             6px
