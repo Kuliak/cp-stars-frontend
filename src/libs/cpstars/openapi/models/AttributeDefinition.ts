@@ -24,25 +24,25 @@ export interface AttributeDefinition {
      * @type {number}
      * @memberof AttributeDefinition
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof AttributeDefinition
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
      * @memberof AttributeDefinition
      */
-    type?: string;
+    type: string;
     /**
      * 
      * @type {string}
      * @memberof AttributeDefinition
      */
-    description?: string;
+    description: string;
 }
 
 /**
@@ -50,6 +50,10 @@ export interface AttributeDefinition {
  */
 export function instanceOfAttributeDefinition(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "type" in value;
+    isInstance = isInstance && "description" in value;
 
     return isInstance;
 }
@@ -64,10 +68,10 @@ export function AttributeDefinitionFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
+        'id': json['id'],
+        'name': json['name'],
+        'type': json['type'],
+        'description': json['description'],
     };
 }
 

@@ -20,7 +20,6 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import StarBasicInfo from '../../shared/interfaces/StarBasicInfo';
 import { useCallback, useEffect, useState } from 'react';
 import { DEFAULT_RESET_DEC, DEFAULT_RESET_RA, DEFAULT_RESET_RADIUS } from '../../shared/Constants';
 import { paths } from '../../shared/paths';
@@ -29,6 +28,7 @@ import { Button, TextField } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import { pointsDistance } from '../../services/MathUtils';
 import { getComparator, Order, stableSort, useDebounce } from '../../services/DataUtils';
+import { StarBasicInfo } from '../../libs/cpstars/openapi';
 
 interface HeadCell {
   id: keyof StarBasicInfo;
@@ -41,7 +41,7 @@ const headCells: readonly HeadCell[] = [
     label: 'Id',
   },
   {
-    id: 'id_2009_A_AND_A_498_961_R',
+    id: 'id2009AANDA498961R',
     label: '2009A&A...498..961R',
   },
   {
@@ -214,7 +214,7 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
   };
 
   const applyFilter = useCallback(
-    (id_2009_A_AND_A_498_961_R: string, ra: string, dec: string, radius: string) => {
+    (id_2009_A_AND_A_498_961_R: string | undefined, ra: string, dec: string, radius: string) => {
       console.log('ttt');
       let filteredRows = props.originalRows;
 
@@ -229,10 +229,8 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
       if (id_2009_A_AND_A_498_961_R && id_2009_A_AND_A_498_961_R.length !== 0) {
         filteredRows = filteredRows.filter((row) => {
           return (
-            row.id_2009_A_AND_A_498_961_R &&
-            row.id_2009_A_AND_A_498_961_R
-              .toLowerCase()
-              .includes(id_2009_A_AND_A_498_961_R.toLowerCase())
+            row.id2009AANDA498961R &&
+            row.id2009AANDA498961R.toLowerCase().includes(id_2009_A_AND_A_498_961_R.toLowerCase())
           );
         });
       }
@@ -402,7 +400,7 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
                               />
                             </TableCell>
                             <TableCell align="left">{row.id}</TableCell>
-                            <TableCell align="left">{row.id_2009_A_AND_A_498_961_R}</TableCell>
+                            <TableCell align="left">{row.id2009AANDA498961R}</TableCell>
                             <TableCell align="left">
                               {row.consideredCategoryAffiliationProbabilityFlag}
                             </TableCell>

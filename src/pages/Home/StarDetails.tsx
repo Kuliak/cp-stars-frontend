@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import { CircularProgress } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { getStarDetails } from '../../services/DatabaseService';
 import { useParams } from 'react-router-dom';
 import Coordinates from './Coordinates';
 import Paper from '@mui/material/Paper';
 import Magnitudes from '../../components/Data/Magnitudes';
 import Identifiers from '../../components/Data/IdentifiersList';
 import React from 'react';
-import Star from '../../shared/interfaces/Star';
+import { Star, StarsControllerApi } from '../../libs/cpstars/openapi';
 
 const StarDetails = () => {
   const { t } = useTranslation();
   const { id } = useParams();
+
+  const [starsController] = useState(() => new StarsControllerApi());
 
   const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState<Star | null>(null);
@@ -24,7 +25,7 @@ const StarDetails = () => {
       return;
     }
 
-    getStarDetails(id).then((data) => {
+    starsController.getStarDetails({ id: Number(id) }).then((data) => {
       setDetails(data);
       setLoading(false);
     });
@@ -42,7 +43,7 @@ const StarDetails = () => {
                 style={{ display: 'inline-block' }}>
                 {t('star_details.name')}:
               </div>
-              {details.id_2009_A_AND_A_498_961_R}
+              {details.id2009AANDA498961R}
             </div>
             <Coordinates
               icrsRA={details.icrsRightAscension}
@@ -55,10 +56,10 @@ const StarDetails = () => {
           </Paper>
 
           <Paper className="mt-4">
-            <Magnitudes magnitudes={details.magnitudes} />
+            <Magnitudes magnitudes={details.magnitudes ? details.magnitudes : []} />
             <Identifiers
               identifiers={details.identifiers}
-              objectName={details.id_2009_A_AND_A_498_961_R}
+              id2009AANDA498961R={details.id2009AANDA498961R}
             />
           </Paper>
         </>

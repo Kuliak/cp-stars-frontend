@@ -31,13 +31,13 @@ export interface Motion {
      * @type {number}
      * @memberof Motion
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {DataSource}
      * @memberof Motion
      */
-    datasource?: DataSource;
+    datasource: DataSource;
     /**
      * 
      * @type {number}
@@ -87,6 +87,8 @@ export interface Motion {
  */
 export function instanceOfMotion(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "datasource" in value;
 
     return isInstance;
 }
@@ -101,8 +103,8 @@ export function MotionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Mo
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'datasource': !exists(json, 'datasource') ? undefined : DataSourceFromJSON(json['datasource']),
+        'id': json['id'],
+        'datasource': DataSourceFromJSON(json['datasource']),
         'properMotionRa': !exists(json, 'properMotionRa') ? undefined : json['properMotionRa'],
         'properMotionRaError': !exists(json, 'properMotionRaError') ? undefined : json['properMotionRaError'],
         'properMotionDec': !exists(json, 'properMotionDec') ? undefined : json['properMotionDec'],

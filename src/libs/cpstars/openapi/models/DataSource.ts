@@ -24,19 +24,19 @@ export interface DataSource {
      * @type {number}
      * @memberof DataSource
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof DataSource
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
      * @memberof DataSource
      */
-    description?: string;
+    description: string;
 }
 
 /**
@@ -44,6 +44,9 @@ export interface DataSource {
  */
 export function instanceOfDataSource(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "description" in value;
 
     return isInstance;
 }
@@ -58,9 +61,9 @@ export function DataSourceFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
+        'id': json['id'],
+        'name': json['name'],
+        'description': json['description'],
     };
 }
 

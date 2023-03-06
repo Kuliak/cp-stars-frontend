@@ -9,13 +9,14 @@
  * @return geometrical distance of two given points
  */
 const pointsDistance = (
-  x1: number | string,
-  y1: number | string,
+  x1: number | undefined,
+  y1: number | undefined,
   x2: number | string,
   y2: number | string
 ): number => {
-  x1 = typeof x1 == 'string' ? Number(x1) : x1;
-  y1 = typeof y1 == 'string' ? Number(y1) : y1;
+  if (x1 === undefined || y1 === undefined || x2 === undefined || y2 === undefined) {
+    return Infinity;
+  }
   x2 = typeof x2 == 'string' ? Number(x2) : x2;
   y2 = typeof y2 == 'string' ? Number(y2) : y2;
 

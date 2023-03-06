@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 import { useState } from 'react';
 import ColoredScaler from './ColoredScaler';
 import React from 'react';
-import Magnitude from '../../shared/interfaces/Magnitude';
+import { Magnitude } from '../../libs/cpstars/openapi';
 
 interface MagnitudesProps {
   magnitudes: Magnitude[];
@@ -60,7 +60,7 @@ const Magnitudes = (props: MagnitudesProps) => {
                     <TableBody>
                       {props.magnitudes.map((row) => (
                         <TableRow key={row.id}>
-                          <TableCell>{row.band}</TableCell>
+                          <TableCell>{row.name}</TableCell>
                           <TableCell>{row.value}</TableCell>
                           <TableCell>{row.error}</TableCell>
                           <TableCell style={{ textAlign: 'center' }}>

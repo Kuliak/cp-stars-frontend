@@ -37,25 +37,25 @@ export interface StarDatasourceAttribute {
      * @type {number}
      * @memberof StarDatasourceAttribute
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {AttributeDefinition}
      * @memberof StarDatasourceAttribute
      */
-    attributeDefinition?: AttributeDefinition;
+    attributeDefinition: AttributeDefinition;
     /**
      * 
      * @type {DataSource}
      * @memberof StarDatasourceAttribute
      */
-    datasource?: DataSource;
+    datasource: DataSource;
     /**
      * 
      * @type {string}
      * @memberof StarDatasourceAttribute
      */
-    value?: string;
+    value: string;
     /**
      * 
      * @type {boolean}
@@ -69,6 +69,10 @@ export interface StarDatasourceAttribute {
  */
 export function instanceOfStarDatasourceAttribute(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "attributeDefinition" in value;
+    isInstance = isInstance && "datasource" in value;
+    isInstance = isInstance && "value" in value;
 
     return isInstance;
 }
@@ -83,10 +87,10 @@ export function StarDatasourceAttributeFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'attributeDefinition': !exists(json, 'attributeDefinition') ? undefined : AttributeDefinitionFromJSON(json['attributeDefinition']),
-        'datasource': !exists(json, 'datasource') ? undefined : DataSourceFromJSON(json['datasource']),
-        'value': !exists(json, 'value') ? undefined : json['value'],
+        'id': json['id'],
+        'attributeDefinition': AttributeDefinitionFromJSON(json['attributeDefinition']),
+        'datasource': DataSourceFromJSON(json['datasource']),
+        'value': json['value'],
         'defined': !exists(json, 'defined') ? undefined : json['defined'],
     };
 }

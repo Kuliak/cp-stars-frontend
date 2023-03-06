@@ -31,19 +31,19 @@ export interface RadialVelocity {
      * @type {number}
      * @memberof RadialVelocity
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {DataSource}
      * @memberof RadialVelocity
      */
-    datasource?: DataSource;
+    datasource: DataSource;
     /**
      * 
      * @type {number}
      * @memberof RadialVelocity
      */
-    radialVelocity?: number;
+    radialVelocity: number;
     /**
      * 
      * @type {number}
@@ -57,6 +57,9 @@ export interface RadialVelocity {
  */
 export function instanceOfRadialVelocity(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "datasource" in value;
+    isInstance = isInstance && "radialVelocity" in value;
 
     return isInstance;
 }
@@ -71,9 +74,9 @@ export function RadialVelocityFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'datasource': !exists(json, 'datasource') ? undefined : DataSourceFromJSON(json['datasource']),
-        'radialVelocity': !exists(json, 'radialVelocity') ? undefined : json['radialVelocity'],
+        'id': json['id'],
+        'datasource': DataSourceFromJSON(json['datasource']),
+        'radialVelocity': json['radialVelocity'],
         'radialVelocityError': !exists(json, 'radialVelocityError') ? undefined : json['radialVelocityError'],
     };
 }

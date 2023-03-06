@@ -24,7 +24,7 @@ export interface StarBasicInfo {
      * @type {number}
      * @memberof StarBasicInfo
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
@@ -74,6 +74,7 @@ export interface StarBasicInfo {
  */
 export function instanceOfStarBasicInfo(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "id" in value;
 
     return isInstance;
 }
@@ -88,7 +89,7 @@ export function StarBasicInfoFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'],
         'id2009AANDA498961R': !exists(json, 'id_2009_A_AND_A_498_961_R') ? undefined : json['id_2009_A_AND_A_498_961_R'],
         'consideredCategoryAffiliationProbabilityFlag': !exists(json, 'consideredCategoryAffiliationProbabilityFlag') ? undefined : json['consideredCategoryAffiliationProbabilityFlag'],
         'binarySystemComponent': !exists(json, 'binarySystemComponent') ? undefined : json['binarySystemComponent'],

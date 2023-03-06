@@ -7,37 +7,42 @@ import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import { CircularProgress, Collapse, Grid, TableCell } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
-import { getAllAliases } from '../../services/ExternalService';
+import { Key, useEffect, useState } from 'react';
 import React from 'react';
-import Identifiers from '../../shared/interfaces/Identifiers';
+import { ExternalServicesControllerApi, Identifiers } from '../../libs/cpstars/openapi';
 
 interface IdentifiersListProps {
-  objectName: string;
-  identifiers: Identifiers;
+  id2009AANDA498961R: string | undefined;
+  identifiers: Identifiers | undefined;
 }
 
 const IdentifiersList = (props: IdentifiersListProps) => {
   const { t } = useTranslation();
 
+  const [externalServicesController] = useState(() => new ExternalServicesControllerApi());
+
   const [open, setOpen] = useState(false);
   const [externalOpen, setExternalOpen] = useState(false);
 
   const [loading, setLoading] = useState(true);
-  const [externalAliases, setExternalAliases] = useState([]);
+  const [externalAliases, setExternalAliases] = useState<String[]>([]);
 
   useEffect(() => {
     let name;
-    if (props.objectName) {
-      name = props.objectName;
-    } else if (props.identifiers.dm) {
-      name = props.identifiers.dm;
-    } else if (props.identifiers.hd) {
-      name = props.identifiers.hd;
-    } else if (props.identifiers.hip) {
-      name = props.identifiers.hip;
-    } else if (props.identifiers.tyc) {
-      name = props.identifiers.tyc;
+    if (props.id2009AANDA498961R) {
+      name = 'Renson' + props.id2009AANDA498961R;
+    } else if (props.identifiers) {
+      if (props.identifiers.hd) {
+        name = 'HD' + props.identifiers.hd;
+      } else if (props.identifiers.hip) {
+        name = 'HIP' + props.identifiers.hip;
+      } else if (props.identifiers.tyc) {
+        name = 'TYC' + props.identifiers.tyc;
+      } else if (props.identifiers.gaiaDR2) {
+        name = 'Gaia DR2' + props.identifiers.gaiaDR2;
+      } else if (props.identifiers.gaiaDR3) {
+        name = 'Gaia DR3' + props.identifiers.gaiaDR3;
+      }
     }
 
     if (!name) {
@@ -45,7 +50,7 @@ const IdentifiersList = (props: IdentifiersListProps) => {
       return;
     }
 
-    getAllAliases(name).then((data) => {
+    externalServicesController.getIdentifiers({ name: name }).then((data) => {
       setExternalAliases(data);
       setLoading(false);
     });
@@ -77,18 +82,25 @@ const IdentifiersList = (props: IdentifiersListProps) => {
                   timeout="auto"
                   unmountOnExit>
                   <Grid>
-                    <Grid item>
-                      <b>DM:</b> {props.identifiers.dm}
-                    </Grid>
-                    <Grid item>
-                      <b>HD:</b> {props.identifiers.hd}
-                    </Grid>
-                    <Grid item>
-                      <b>HIP:</b> {props.identifiers.hip}
-                    </Grid>
-                    <Grid item>
-                      <b>TYC:</b> {props.identifiers.tyc}
-                    </Grid>
+                    {props.identifiers && (
+                      <>
+                        <Grid item>
+                          <b>HD:</b> {props.identifiers.hd}
+                        </Grid>
+                        <Grid item>
+                          <b>HIP:</b> {props.identifiers.hip}
+                        </Grid>
+                        <Grid item>
+                          <b>TYC:</b> {props.identifiers.tyc}
+                        </Grid>
+                        <Grid item>
+                          <b>DR2:</b> {props.identifiers.gaiaDR2}
+                        </Grid>
+                        <Grid item>
+                          <b>DR3:</b> {props.identifiers.gaiaDR3}
+                        </Grid>
+                      </>
+                    )}
                   </Grid>
                   <div
                     style={{ alignItems: 'flex-start', cursor: 'pointer' }}
@@ -125,7 +137,7 @@ const IdentifiersList = (props: IdentifiersListProps) => {
                                   rowSpacing={1}>
                                   {externalAliases.map((alias) => (
                                     <Grid
-                                      key={alias}
+                                      key={alias as Key}
                                       item
                                       xs={6}>
                                       {alias}

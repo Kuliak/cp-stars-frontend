@@ -55,7 +55,7 @@ export interface Star {
      * @type {number}
      * @memberof Star
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
@@ -159,6 +159,7 @@ export interface Star {
  */
 export function instanceOfStar(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "id" in value;
 
     return isInstance;
 }
@@ -173,7 +174,7 @@ export function StarFromJSONTyped(json: any, ignoreDiscriminator: boolean): Star
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'],
         'consideredCategoryAffiliationProbabilityFlag': !exists(json, 'consideredCategoryAffiliationProbabilityFlag') ? undefined : json['consideredCategoryAffiliationProbabilityFlag'],
         'id2009AANDA498961R': !exists(json, 'id_2009_A_AND_A_498_961_R') ? undefined : json['id_2009_A_AND_A_498_961_R'],
         'binarySystemComponent': !exists(json, 'binarySystemComponent') ? undefined : json['binarySystemComponent'],

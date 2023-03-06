@@ -24,7 +24,7 @@ export interface Identifiers {
      * @type {number}
      * @memberof Identifiers
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
@@ -68,6 +68,7 @@ export interface Identifiers {
  */
 export function instanceOfIdentifiers(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "id" in value;
 
     return isInstance;
 }
@@ -82,7 +83,7 @@ export function IdentifiersFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'],
         'gaiaDR2': !exists(json, 'gaiaDR2') ? undefined : json['gaiaDR2'],
         'gaiaDR3': !exists(json, 'gaiaDR3') ? undefined : json['gaiaDR3'],
         'hd': !exists(json, 'hd') ? undefined : json['hd'],

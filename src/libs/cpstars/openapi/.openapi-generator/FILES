@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/ExternalServicesControllerApi.ts
 apis/StarsControllerApi.ts
 apis/index.ts

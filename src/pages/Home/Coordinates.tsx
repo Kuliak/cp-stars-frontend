@@ -8,12 +8,12 @@ import Paper from '@mui/material/Paper';
 import React from 'react';
 
 interface CoordinatesProps {
-  icrsRA: number;
-  icrsRAError: number;
-  icrsDec: number;
-  icrsDecError: number;
-  galacticLongitude: number;
-  galacticLatitude: number;
+  icrsRA: number | undefined;
+  icrsRAError: number | undefined;
+  icrsDec: number | undefined;
+  icrsDecError: number | undefined;
+  galacticLongitude: number | undefined;
+  galacticLatitude: number | undefined;
 }
 
 const Coordinates = (props: CoordinatesProps) => {

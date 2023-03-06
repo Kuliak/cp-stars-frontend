@@ -7,7 +7,7 @@ interface ColoredScalerProps {
   type: string;
   best: string | number;
   worst: string | number;
-  value: string | number;
+  value: string | number | undefined;
   bestColor?: number;
   worstColor?: number;
 }

@@ -1,17 +1,17 @@
 import BasicInfoStarsTable from './Stars';
-import { getBasicInfoForAllStars } from '../../services/DatabaseService';
 import { useEffect, useState } from 'react';
 import { CircularProgress } from '@mui/material';
 import React from 'react';
-import StarBasicInfo from '../../shared/interfaces/StarBasicInfo';
+import { StarBasicInfo, StarsControllerApi } from '../../libs/cpstars/openapi';
 
 const Home = () => {
   const [isLoading, setLoading] = useState(true);
   const [stars, setStars] = useState<StarBasicInfo[]>([]);
+  const [starsController] = useState(() => new StarsControllerApi());
 
   useEffect(() => {
     setLoading(true);
-    getBasicInfoForAllStars().then((data) => {
+    starsController.getBasicInfoStarsList().then((data) => {
       setStars(data);
       setLoading(false);
     });

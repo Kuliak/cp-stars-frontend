@@ -31,25 +31,25 @@ export interface Magnitude {
      * @type {number}
      * @memberof Magnitude
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {DataSource}
      * @memberof Magnitude
      */
-    datasource?: DataSource;
+    datasource: DataSource;
     /**
      * 
      * @type {string}
      * @memberof Magnitude
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {number}
      * @memberof Magnitude
      */
-    value?: number;
+    value: number;
     /**
      * 
      * @type {number}
@@ -68,12 +68,6 @@ export interface Magnitude {
      * @memberof Magnitude
      */
     uncertaintyFlag?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Magnitude
-     */
-    defined?: boolean;
 }
 
 /**
@@ -81,6 +75,10 @@ export interface Magnitude {
  */
 export function instanceOfMagnitude(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "datasource" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "value" in value;
 
     return isInstance;
 }
@@ -95,14 +93,13 @@ export function MagnitudeFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'datasource': !exists(json, 'datasource') ? undefined : DataSourceFromJSON(json['datasource']),
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'value': !exists(json, 'value') ? undefined : json['value'],
+        'id': json['id'],
+        'datasource': DataSourceFromJSON(json['datasource']),
+        'name': json['name'],
+        'value': json['value'],
         'error': !exists(json, 'error') ? undefined : json['error'],
         'quality': !exists(json, 'quality') ? undefined : json['quality'],
         'uncertaintyFlag': !exists(json, 'uncertaintyFlag') ? undefined : json['uncertaintyFlag'],
-        'defined': !exists(json, 'defined') ? undefined : json['defined'],
     };
 }
 
@@ -122,7 +119,6 @@ export function MagnitudeToJSON(value?: Magnitude | null): any {
         'error': value.error,
         'quality': value.quality,
         'uncertaintyFlag': value.uncertaintyFlag,
-        'defined': value.defined,
     };
 }
 

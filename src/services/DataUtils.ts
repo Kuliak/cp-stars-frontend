@@ -1,6 +1,18 @@
 import { useEffect, useState } from 'react';
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+  if (!a && !b) {
+    return 0;
+  } else {
+    if (!a) {
+      return 1;
+    }
+
+    if (!b) {
+      return -1;
+    }
+  }
+
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
@@ -15,7 +27,7 @@ type Order = 'asc' | 'desc';
 function getComparator<Key extends keyof any>(
   order: Order,
   orderBy: Key
-): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
+): (a: { [key in Key]?: number | string }, b: { [key in Key]?: number | string }) => number {
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
@@ -25,7 +37,7 @@ function getComparator<Key extends keyof any>(
 // stableSort() brings sort stability to non-modern browsers (notably IE11). If you
 // only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
 // with exampleArray.slice().sort(exampleComparator)
-function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
+function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
