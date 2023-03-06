@@ -184,8 +184,6 @@ interface BasicInfoStarsTableProps {
 export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
   const navigate = useNavigate();
 
-  console.log(props);
-
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof StarBasicInfo>('id');
   const [selected, setSelected] = useState<readonly number[]>([]);
@@ -215,7 +213,6 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
 
   const applyFilter = useCallback(
     (id_2009_A_AND_A_498_961_R: string | undefined, ra: string, dec: string, radius: string) => {
-      console.log('ttt');
       let filteredRows = props.originalRows;
 
       if (ra !== DEFAULT_RESET_RA && dec !== DEFAULT_RESET_DEC && radius !== DEFAULT_RESET_RADIUS) {
