@@ -1,0 +1,16 @@
+.openapi-generator-ignore
+apis/ExternalServicesControllerApi.ts
+apis/StarsControllerApi.ts
+apis/index.ts
+index.ts
+models/AttributeDefinition.ts
+models/DataSource.ts
+models/Identifiers.ts
+models/Magnitude.ts
+models/Motion.ts
+models/RadialVelocity.ts
+models/Star.ts
+models/StarBasicInfo.ts
+models/StarDatasourceAttribute.ts
+models/index.ts
+runtime.ts

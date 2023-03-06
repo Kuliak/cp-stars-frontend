@@ -8,6 +8,7 @@
     "@emotion/styled": "11.10.5",
     "@mui/icons-material": "5.11.0",
     "@mui/material": "5.11.6",
+    "@openapitools/openapi-generator-cli": "2.5.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -29,6 +30,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "openapi-gen": "openapi-generator-cli generate -i http://localhost:8081/api/docs.yaml -g typescript-fetch -o libs/cpstars/openapi --additional-properties=paramNaming=original,enumPropertyNaming=original",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

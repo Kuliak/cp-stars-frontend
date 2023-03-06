@@ -56,7 +56,7 @@ const en = () => {
         title: 'CP-Stars',
       },
       star_details: {
-        name: 'Name',
+        id_2009_A_AND_A_498_961_R: '2009A&A...498..961R',
         coordinates: {
           dec: 'Declination',
           error: 'error',

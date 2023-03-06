@@ -42,7 +42,7 @@ const StarDetails = () => {
                 style={{ display: 'inline-block' }}>
                 {t('star_details.name')}:
               </div>
-              {details.name}
+              {details.id_2009_A_AND_A_498_961_R}
             </div>
             <Coordinates
               icrsRA={details.icrsRightAscension}
@@ -58,7 +58,7 @@ const StarDetails = () => {
             <Magnitudes magnitudes={details.magnitudes} />
             <Identifiers
               identifiers={details.identifiers}
-              objectName={details.name}
+              objectName={details.id_2009_A_AND_A_498_961_R}
             />
           </Paper>
         </>

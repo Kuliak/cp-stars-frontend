@@ -41,8 +41,16 @@ const headCells: readonly HeadCell[] = [
     label: 'Id',
   },
   {
-    id: 'name',
-    label: 'Name',
+    id: 'id_2009_A_AND_A_498_961_R',
+    label: '2009A&A...498..961R',
+  },
+  {
+    id: 'consideredCategoryAffiliationProbabilityFlag',
+    label: 'Category probability',
+  },
+  {
+    id: 'binarySystemComponent',
+    label: 'Binary System',
   },
   {
     id: 'icrsRightAscension',
@@ -176,6 +184,8 @@ interface BasicInfoStarsTableProps {
 export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
   const navigate = useNavigate();
 
+  console.log(props);
+
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof StarBasicInfo>('id');
   const [selected, setSelected] = useState<readonly number[]>([]);
@@ -204,7 +214,8 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
   };
 
   const applyFilter = useCallback(
-    (name: string, ra: string, dec: string, radius: string) => {
+    (id_2009_A_AND_A_498_961_R: string, ra: string, dec: string, radius: string) => {
+      console.log('ttt');
       let filteredRows = props.originalRows;
 
       if (ra !== DEFAULT_RESET_RA && dec !== DEFAULT_RESET_DEC && radius !== DEFAULT_RESET_RADIUS) {
@@ -215,9 +226,16 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
         });
       }
 
-      filteredRows = filteredRows.filter((row) => {
-        return row.name.toLowerCase().includes(name.toLowerCase());
-      });
+      if (id_2009_A_AND_A_498_961_R && id_2009_A_AND_A_498_961_R.length !== 0) {
+        filteredRows = filteredRows.filter((row) => {
+          return (
+            row.id_2009_A_AND_A_498_961_R &&
+            row.id_2009_A_AND_A_498_961_R
+              .toLowerCase()
+              .includes(id_2009_A_AND_A_498_961_R.toLowerCase())
+          );
+        });
+      }
 
       setRows(filteredRows);
     },
@@ -384,7 +402,11 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
                               />
                             </TableCell>
                             <TableCell align="left">{row.id}</TableCell>
-                            <TableCell align="left">{row.name}</TableCell>
+                            <TableCell align="left">{row.id_2009_A_AND_A_498_961_R}</TableCell>
+                            <TableCell align="left">
+                              {row.consideredCategoryAffiliationProbabilityFlag}
+                            </TableCell>
+                            <TableCell align="left">{row.binarySystemComponent}</TableCell>
                             <TableCell align="left">{row.icrsRightAscension}</TableCell>
                             <TableCell align="left">{row.icrsDeclination}</TableCell>
                             <TableCell align="left">{row.galacticLongitude}</TableCell>
