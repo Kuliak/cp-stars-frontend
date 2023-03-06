@@ -79,21 +79,21 @@ export default function PersistentDrawerLeft() {
 // import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 // import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 // import { styled, useTheme } from '@mui/material/styles';
-// import { AppBar, Drawer, DrawerHeader, AppBarProps as MuiAppBarProps } from './DrawerMenuStyles';
+// import { AppBar, drawer, DrawerHeader, AppBarProps as MuiAppBarProps } from './DrawerMenuStyles';
 // import CssBaseline from '@mui/material/CssBaseline';
 // import MenuIcon from '@mui/icons-material/Menu';
 // import Divider from '@mui/material/Divider';
 // import List from '@mui/material/List';
 // import Box from '@mui/material/Box';
 // import { useTranslation } from 'react-i18next';
-// import HomeIcon from '@mui/icons-material/Home';
+// import HomeIcon from '@mui/icons-material/home';
 // import InfoIcon from '@mui/icons-material/Info';
 // import MenuBookIcon from '@mui/icons-material/MenuBook';
 // import { MenuOption } from './MenuOption';
 // import { paths } from '../../shared/paths';
 // import Content from '../Content';
 // import MuiAppBar from '@mui/material/AppBar';
-// import MuiDrawer from '@mui/material/Drawer';
+// import MuiDrawer from '@mui/material/drawer';
 //
 // const drawerWidth = 200;
 //
@@ -152,7 +152,7 @@ export default function PersistentDrawerLeft() {
 //   ...theme.mixins.toolbar,
 // }));
 //
-// export const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+// export const drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
 //   ({ theme, open }) => ({
 //     width: drawerWidth,
 //     flexShrink: 0,
@@ -228,7 +228,7 @@ export default function PersistentDrawerLeft() {
 //             </Typography>
 //           </Toolbar>
 //         </AppBar>
-//         <Drawer
+//         <drawer
 //           variant="permanent"
 //           open={isDrawerOpen}>
 //           <DrawerHeader>
@@ -250,7 +250,7 @@ export default function PersistentDrawerLeft() {
 //               />
 //             ))}
 //           </List>
-//         </Drawer>
+//         </drawer>
 //         <Box
 //           component="main"
 //           sx={{ flexGrow: 1, p: 3, padding: 0 }}>

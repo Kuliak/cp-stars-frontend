@@ -1,5 +1,5 @@
 import ProjectDescription from './projectDescription';
-import Acknowledgements from './Acknowledgements/acknowledgements';
+import Acknowledgements from './acknowledgements/acknowledgements';
 import React from 'react';
 
 const About = () => {

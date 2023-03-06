@@ -117,7 +117,7 @@ export { AppBar, DrawerCustom, DrawerHeader, Main };
 // import { styled } from '@mui/material/styles';
 
 // import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-// import MuiDrawer from '@mui/material/Drawer';
+// import MuiDrawer from '@mui/material/drawer';
 //
 // const drawerWidth = 200;
 //
@@ -176,7 +176,7 @@ export { AppBar, DrawerCustom, DrawerHeader, Main };
 //   ...theme.mixins.toolbar,
 // }));
 //
-// export const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+// export const drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
 //   ({ theme, open }) => ({
 //     width: drawerWidth,
 //     flexShrink: 0,

@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import Coordinates from './Coordinates';
 import Paper from '@mui/material/Paper';
-import Magnitudes from '../../components/Data/Magnitudes';
-import Identifiers from '../../components/Data/IdentifiersList';
+import Magnitudes from '../../components/data/magnitudes/Magnitudes';
+import Identifiers from '../../components/data/IdentifiersList';
 import React from 'react';
 import { Star, StarsControllerApi } from '../../libs/cpstars/openapi';
 

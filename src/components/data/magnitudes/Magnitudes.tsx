@@ -9,9 +9,9 @@ import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
 import { useState } from 'react';
-import ColoredScaler from './ColoredScaler';
+import ColoredScaler from '../ColoredScaler';
 import React from 'react';
-import { Magnitude } from '../../libs/cpstars/openapi';
+import { Magnitude } from '../../../libs/cpstars/openapi';
 
 interface MagnitudesProps {
   magnitudes: Magnitude[];

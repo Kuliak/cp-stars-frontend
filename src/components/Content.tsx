@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { paths } from '../shared/paths';
 import { About, Home, Manual } from '../pages/pages';
 import Footer from './Footer';
-import StarDetails from '../pages/Home/StarDetails';
+import StarDetails from '../pages/home/StarDetails';
 import React from 'react';
 
 const Content = () => {
@@ -15,7 +15,7 @@ const Content = () => {
         />
         <Route
           path={paths.about}
-          // element={<About className="about" />}
+          // element={<about className="about" />}
           element={<About />}
         />
         <Route
