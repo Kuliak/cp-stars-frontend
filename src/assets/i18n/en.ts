@@ -56,7 +56,6 @@ const en = () => {
         title: 'CP-Stars',
       },
       star_details: {
-        id_2009_A_AND_A_498_961_R: '2009A&A...498..961R',
         coordinates: {
           alpha: 'Alpha',
           dec: 'Declination',
@@ -67,6 +66,7 @@ const en = () => {
           ra: 'Right Ascension',
           value: 'value',
         },
+        id_2009_A_AND_A_498_961_R: 'Renson',
         identifiers: {
           external: 'External',
           title: 'Identifiers',

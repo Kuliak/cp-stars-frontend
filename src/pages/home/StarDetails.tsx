@@ -44,7 +44,7 @@ const StarDetails = () => {
               <div
                 className="fw-bold me-2"
                 style={{ display: 'inline-block' }}>
-                {t('star_details.name')}:
+                {t('star_details.id_2009_A_AND_A_498_961_R')}:
               </div>
               {details.id2009AANDA498961R}
             </div>
