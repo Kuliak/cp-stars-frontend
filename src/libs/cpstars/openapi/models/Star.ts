@@ -136,10 +136,10 @@ export interface Star {
     identifiers?: Identifiers;
     /**
      * 
-     * @type {Motion}
+     * @type {Array<Motion>}
      * @memberof Star
      */
-    motion?: Motion;
+    motions?: Array<Motion>;
     /**
      * 
      * @type {Array<RadialVelocity>}
@@ -188,7 +188,7 @@ export function StarFromJSONTyped(json: any, ignoreDiscriminator: boolean): Star
         'delta': !exists(json, 'delta') ? undefined : json['delta'],
         'magnitudes': !exists(json, 'magnitudes') ? undefined : ((json['magnitudes'] as Array<any>).map(MagnitudeFromJSON)),
         'identifiers': !exists(json, 'identifiers') ? undefined : IdentifiersFromJSON(json['identifiers']),
-        'motion': !exists(json, 'motion') ? undefined : MotionFromJSON(json['motion']),
+        'motions': !exists(json, 'motions') ? undefined : ((json['motions'] as Array<any>).map(MotionFromJSON)),
         'radialVelocities': !exists(json, 'radialVelocities') ? undefined : ((json['radialVelocities'] as Array<any>).map(RadialVelocityFromJSON)),
         'starDatasourceAttributes': !exists(json, 'starDatasourceAttributes') ? undefined : ((json['starDatasourceAttributes'] as Array<any>).map(StarDatasourceAttributeFromJSON)),
     };
@@ -217,7 +217,7 @@ export function StarToJSON(value?: Star | null): any {
         'delta': value.delta,
         'magnitudes': value.magnitudes === undefined ? undefined : ((value.magnitudes as Array<any>).map(MagnitudeToJSON)),
         'identifiers': IdentifiersToJSON(value.identifiers),
-        'motion': MotionToJSON(value.motion),
+        'motions': value.motions === undefined ? undefined : ((value.motions as Array<any>).map(MotionToJSON)),
         'radialVelocities': value.radialVelocities === undefined ? undefined : ((value.radialVelocities as Array<any>).map(RadialVelocityToJSON)),
         'starDatasourceAttributes': value.starDatasourceAttributes === undefined ? undefined : ((value.starDatasourceAttributes as Array<any>).map(StarDatasourceAttributeToJSON)),
     };

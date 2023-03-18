@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import { CircularProgress } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import Coordinates from './Coordinates';
+import Coordinates from './coordinates/Coordinates';
 import Paper from '@mui/material/Paper';
 import Magnitudes from '../../components/data/magnitudes/Magnitudes';
 import Identifiers from '../../components/data/IdentifiersList';
 import React from 'react';
 import { Star, StarsControllerApi } from '../../libs/cpstars/openapi';
+import MotionsList from '../../components/data/MotionsList';
+import RadialVelocities from '../../components/data/RadialVelocities';
 
 const StarDetails = () => {
   const { t } = useTranslation();
@@ -27,6 +29,7 @@ const StarDetails = () => {
 
     starsController.getStarDetails({ id: Number(id) }).then((data) => {
       setDetails(data);
+      console.log(details);
       setLoading(false);
     });
   }, [id]);
@@ -46,6 +49,8 @@ const StarDetails = () => {
               {details.id2009AANDA498961R}
             </div>
             <Coordinates
+              alpha={details.alpha}
+              delta={details.delta}
               icrsRA={details.icrsRightAscension}
               icrsRAError={details.icrsRightAscensionError}
               icrsDec={details.icrsDeclination}
@@ -57,6 +62,10 @@ const StarDetails = () => {
 
           <Paper className="mt-4">
             <Magnitudes magnitudes={details.magnitudes ? details.magnitudes : []} />
+            <MotionsList motions={details.motions ? details.motions : []} />
+            <RadialVelocities
+              radialVelocities={details.radialVelocities ? details.radialVelocities : []}
+            />
             <Identifiers
               identifiers={details.identifiers}
               id2009AANDA498961R={details.id2009AANDA498961R}

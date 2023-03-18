@@ -58,7 +58,9 @@ const en = () => {
       star_details: {
         id_2009_A_AND_A_498_961_R: '2009A&A...498..961R',
         coordinates: {
+          alpha: 'Alpha',
           dec: 'Declination',
+          delta: 'Delta',
           error: 'error',
           galactic_longitude: 'Galactic Longitude',
           galactic_latitude: 'Galactic Latitude',
@@ -86,6 +88,22 @@ const en = () => {
           quality: 'quality',
           title: 'Magnitudes',
           value: 'value',
+        },
+        motions: {
+          datasource: 'Datasource',
+          parallax: 'parallax',
+          parallax_error: 'parallax error',
+          pmdec: 'pmDec',
+          pmdec_error: 'pmDec error',
+          pmra: 'pmRA',
+          pmra_error: 'pmRA error',
+          title: 'Motions',
+        },
+        radial_velocities: {
+          datasource: 'Datasource',
+          radial_velocity: 'Radial velocity',
+          radial_velocity_error: 'Radial velocity error',
+          title: 'Radial velocities',
         },
       },
     },
