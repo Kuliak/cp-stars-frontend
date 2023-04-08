@@ -1,5 +1,5 @@
 import React from 'react';
-import { contributorsList } from '../../shared/contributorsList';
+import { contributorsList } from '../../../components/data/contributorsList';
 
 const Contributors = () => {
   return (

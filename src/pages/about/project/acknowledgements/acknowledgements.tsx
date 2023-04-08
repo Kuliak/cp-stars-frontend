@@ -7,7 +7,7 @@ const Acknowledgements = () => {
   const { t } = useTranslation();
 
   return (
-    <div>
+    <div className="mt-5">
       <h3>{t('about.acknowledgements.name')}</h3>
       <Server />
       <Graphics />

@@ -36,6 +36,24 @@ export interface DataSource {
      * @type {string}
      * @memberof DataSource
      */
+    fullName: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DataSource
+     */
+    year: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DataSource
+     */
+    bibcode: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DataSource
+     */
     description: string;
 }
 
@@ -46,6 +64,9 @@ export function instanceOfDataSource(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "fullName" in value;
+    isInstance = isInstance && "year" in value;
+    isInstance = isInstance && "bibcode" in value;
     isInstance = isInstance && "description" in value;
 
     return isInstance;
@@ -63,6 +84,9 @@ export function DataSourceFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         
         'id': json['id'],
         'name': json['name'],
+        'fullName': json['fullName'],
+        'year': json['year'],
+        'bibcode': json['bibcode'],
         'description': json['description'],
     };
 }
@@ -78,6 +102,9 @@ export function DataSourceToJSON(value?: DataSource | null): any {
         
         'id': value.id,
         'name': value.name,
+        'fullName': value.fullName,
+        'year': value.year,
+        'bibcode': value.bibcode,
         'description': value.description,
     };
 }

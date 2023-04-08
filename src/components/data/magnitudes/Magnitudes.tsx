@@ -1,17 +1,15 @@
 import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Magnitude } from '../../../libs/cpstars/openapi';
 import { useEffect, useState } from 'react';
 import MagnitudesPanel from './magnitudesPanel';
-import IconButton from '@mui/material/IconButton';
-import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import Paper from '@mui/material/Paper';
 import TableContainer from '@mui/material/TableContainer';
-import { Collapse } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -46,9 +44,10 @@ interface MagnitudesProps {
 }
 
 export default function Magnitudes(props: MagnitudesProps) {
+  const { id } = useParams();
   const { t } = useTranslation();
 
-  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [value, setValue] = React.useState(0);
 
   const [tabs] = useState<{ index: number; name: string; magnitudes: Magnitude[] }[]>([]);
@@ -60,6 +59,7 @@ export default function Magnitudes(props: MagnitudesProps) {
       { displayName: '2005A&A...441..631P', datasourceName: '2005A&A...441..631P' },
       { displayName: 'Gaia DR2', datasourceName: 'GaiaDr2' },
       { displayName: 'Gaia DR3', datasourceName: 'GaiaDr3' },
+      { displayName: 'Geneva', datasourceName: 'Geneva' },
       { displayName: 'Hipparcos', datasourceName: 'Hipparcos' },
       { displayName: 'Johnson UBV', datasourceName: 'Johnson' },
       { displayName: 'Stroemgren', datasourceName: 'Stroemgren' },
@@ -79,6 +79,8 @@ export default function Magnitudes(props: MagnitudesProps) {
           magnitudes: datasourceMagnitudes,
         });
       }
+
+      setLoading(false);
     });
   }, [props.magnitudes, tabs]);
 
@@ -88,22 +90,9 @@ export default function Magnitudes(props: MagnitudesProps) {
 
   return (
     <>
-      <div
-        style={{ alignItems: 'flex-start', cursor: 'pointer' }}
-        onClick={() => setOpen(!open)}>
-        <IconButton
-          aria-label="expand row"
-          size="small"
-          color="info">
-          {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
-          {t('star_details.magnitudes.title')}
-        </IconButton>
-      </div>
-      <TableContainer component={Paper}>
-        <Collapse
-          in={open}
-          timeout="auto"
-          unmountOnExit>
+      {loading && <CircularProgress />}
+      {tabs && (
+        <TableContainer component={Paper}>
           <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs
@@ -130,8 +119,8 @@ export default function Magnitudes(props: MagnitudesProps) {
               </TabPanel>
             ))}
           </Box>
-        </Collapse>
-      </TableContainer>
+        </TableContainer>
+      )}
     </>
   );
 }

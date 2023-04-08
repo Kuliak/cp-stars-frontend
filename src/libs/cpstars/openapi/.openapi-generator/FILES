@@ -1,10 +1,15 @@
+apis/DatasourcesControllerApi.ts
+apis/ExportControllerApi.ts
 apis/ExternalServicesControllerApi.ts
 apis/StarsControllerApi.ts
 apis/index.ts
 index.ts
 models/AttributeDefinition.ts
 models/DataSource.ts
-models/Identifiers.ts
+models/DataSourceBasicInfo.ts
+models/ExtendedStar.ts
+models/ExternalDetails.ts
+models/Identifier.ts
 models/Magnitude.ts
 models/Motion.ts
 models/RadialVelocity.ts

@@ -1,6 +1,17 @@
 export const paths = {
   home: '/',
-  about: '/about',
+  about: {
+    general: '/about',
+    project: '/project',
+    datasources: '/datasources',
+  },
   manual: '/manual',
-  starDetails: '/stars',
+  starDetails: {
+    general: '/stars',
+    identifiers: '/identifiers',
+    magnitudes: '/magnitudes',
+    motions: '/motions',
+    radial_velocities: '/radialVelocities',
+    star_datasource_attributes: '/stardatasourceattributes',
+  },
 };

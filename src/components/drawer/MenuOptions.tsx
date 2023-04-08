@@ -64,7 +64,7 @@ const MenuOptions = (props: MenuOptionsProps) => {
       icon: <HomeIcon />,
       routerPath: paths.home,
     },
-    { id: 1, text: t('drawer.about'), icon: <InfoIcon />, routerPath: paths.about },
+    { id: 1, text: t('drawer.about'), icon: <InfoIcon />, routerPath: paths.about.general },
     {
       id: 2,
       text: t('drawer.manual'),

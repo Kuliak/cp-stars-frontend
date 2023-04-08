@@ -52,10 +52,8 @@ const CoordinatesPairTable = (props: CoordinatesPairTableProps) => {
             {props.coordinates &&
               props.coordinates.map((coordinate) => {
                 return (
-                  <TableRow>
-                    <TableCell
-                      style={{ padding: 10, width: 'fit-content' }}
-                      key={coordinate.name}>
+                  <TableRow key={coordinate.name}>
+                    <TableCell style={{ padding: 10, width: 'fit-content' }}>
                       <b>{coordinate.name}</b>
                     </TableCell>
                     {props.displayedColumns.includes('value') && (

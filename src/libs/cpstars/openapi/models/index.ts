@@ -2,7 +2,10 @@
 /* eslint-disable */
 export * from './AttributeDefinition';
 export * from './DataSource';
-export * from './Identifiers';
+export * from './DataSourceBasicInfo';
+export * from './ExtendedStar';
+export * from './ExternalDetails';
+export * from './Identifier';
 export * from './Magnitude';
 export * from './Motion';
 export * from './RadialVelocity';

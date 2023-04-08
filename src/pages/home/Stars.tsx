@@ -24,11 +24,13 @@ import { useCallback, useEffect, useState } from 'react';
 import { DEFAULT_RESET_DEC, DEFAULT_RESET_RA, DEFAULT_RESET_RADIUS } from '../../shared/Constants';
 import { paths } from '../../shared/paths';
 import { useNavigate } from 'react-router-dom';
-import { Button, TextField } from '@mui/material';
+import { Button, Grid, TextField } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
+import IosShareIcon from '@mui/icons-material/IosShare';
 import { pointsDistance } from '../../services/MathUtils';
 import { getComparator, Order, stableSort, useDebounce } from '../../services/DataUtils';
 import { StarBasicInfo } from '../../libs/cpstars/openapi';
+import { useTranslation } from 'react-i18next';
 
 interface HeadCell {
   id: keyof StarBasicInfo;
@@ -182,6 +184,8 @@ interface BasicInfoStarsTableProps {
 }
 
 export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [order, setOrder] = useState<Order>('asc');
@@ -300,59 +304,80 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
       <h1 className="mb-5">Chemically Peculiar Stars</h1>
       {rows && (
         <>
-          <Box
-            alignItems={'flex-end'}
-            justifyContent={'flex-start'}
-            display={'flex'}
-            sx={{ marginBottom: '10px' }}>
-            <Button
-              variant="contained"
-              endIcon={<ClearIcon />}
-              onClick={resetFilter}
-              sx={{ bottom: 0, marginRight: '10px', padding: '12px 16px 12px 16px' }}>
-              <div>Reset</div>
-            </Button>
-            <TextField
-              label="Search"
-              type="search"
-              autoComplete="search-stars"
-              variant="filled"
-              value={searched}
-              sx={{ marginRight: '25px' }}
-              size={'small'}
-              onChange={(searchVal) => setSearched(searchVal.target.value)}
-            />
-            <TextField
-              label="RA"
-              type="number"
-              autoComplete="filter-stars-ra"
-              variant="filled"
-              value={filterRA === DEFAULT_RESET_RA ? '' : filterRA}
-              sx={{ width: 100, padding: '25px 0px 0px 25 px', marginRight: '10px' }}
-              size={'small'}
-              onChange={(searchVal) => setFilterRA(searchVal.target.value)}
-            />
-            <TextField
-              label="Dec"
-              type="number"
-              autoComplete="filter-stars-dec"
-              variant="filled"
-              value={filterDec === DEFAULT_RESET_DEC ? '' : String(filterDec)}
-              sx={{ width: 100, padding: '25px 0px 0px 25 px', marginRight: '10px' }}
-              size={'small'}
-              onChange={(searchVal) => setFilterDec(searchVal.target.value)}
-            />
-            <TextField
-              label="Radius"
-              type="number"
-              autoComplete="filter-stars-radius"
-              variant="filled"
-              value={filterRadius === DEFAULT_RESET_RADIUS ? '' : filterRadius}
-              sx={{ width: 80, padding: '25px 0px 0px 25 px', marginRight: '10px' }}
-              size={'small'}
-              onChange={(searchVal) => setFilterRadius(searchVal.target.value)}
-            />
-          </Box>
+          <Grid>
+            <Grid item>
+              <Box
+                alignItems={'flex-end'}
+                justifyContent={'flex-start'}
+                display={'flex'}
+                sx={{ marginBottom: '10px' }}>
+                <Button
+                  variant="contained"
+                  endIcon={<ClearIcon />}
+                  onClick={resetFilter}
+                  className="flex-button"
+                  sx={{ bottom: 0, marginRight: '10px', padding: '12px 16px 12px 16px' }}>
+                  <div>Reset</div>
+                </Button>
+                <TextField
+                  label="Search"
+                  type="search"
+                  autoComplete="search-stars"
+                  variant="filled"
+                  value={searched}
+                  sx={{ marginRight: '25px' }}
+                  size={'small'}
+                  onChange={(searchVal) => setSearched(searchVal.target.value)}
+                />
+                <TextField
+                  label={t('home.input_form.coordinates.ra')}
+                  type="number"
+                  autoComplete="filter-stars-ra"
+                  variant="filled"
+                  value={filterRA === DEFAULT_RESET_RA ? '' : filterRA}
+                  sx={{ width: 100, padding: '25px 0px 0px 25 px', marginRight: '10px' }}
+                  size={'small'}
+                  onChange={(searchVal) => setFilterRA(searchVal.target.value)}
+                />
+                <TextField
+                  label={t('home.input_form.coordinates.dec')}
+                  type="number"
+                  autoComplete="filter-stars-dec"
+                  variant="filled"
+                  value={filterDec === DEFAULT_RESET_DEC ? '' : String(filterDec)}
+                  sx={{ width: 100, padding: '25px 0px 0px 25 px', marginRight: '10px' }}
+                  size={'small'}
+                  onChange={(searchVal) => setFilterDec(searchVal.target.value)}
+                />
+                <TextField
+                  label={t('home.input_form.coordinates.radius')}
+                  type="number"
+                  autoComplete="filter-stars-radius"
+                  variant="filled"
+                  value={filterRadius === DEFAULT_RESET_RADIUS ? '' : filterRadius}
+                  sx={{ width: 80, padding: '25px 0px 0px 25 px', marginRight: '10px' }}
+                  size={'small'}
+                  onChange={(searchVal) => setFilterRadius(searchVal.target.value)}
+                />
+                <Tooltip
+                  title={selected.length === 0 ? 'Select stars for export first' : ''}
+                  style={{ alignSelf: 'end' }}>
+                  <span>
+                    <Button
+                      variant="contained"
+                      endIcon={<IosShareIcon />}
+                      disabled={selected.length === 0}
+                      onClick={resetFilter}
+                      className="flex-button"
+                      sx={{ bottom: 0, marginRight: '10px', padding: '12px 16px 12px 16px' }}>
+                      <div>{t('home.export')}</div>
+                    </Button>
+                  </span>
+                </Tooltip>
+              </Box>
+            </Grid>
+          </Grid>
+
           <Box>
             <Paper sx={{ width: '100%', mb: 2 }}>
               <EnhancedTableToolbar numSelected={selected.length} />
@@ -379,7 +404,7 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
                         return (
                           <TableRow
                             hover
-                            onClick={() => navigate(`${paths.starDetails}/${row.id}`)}
+                            onClick={() => navigate(`${paths.starDetails.general}/${row.id}`)}
                             role="checkbox"
                             aria-checked={isItemSelected}
                             tabIndex={-1}

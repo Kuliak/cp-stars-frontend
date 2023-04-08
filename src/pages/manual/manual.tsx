@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Manual = () => {
-  return <div>TODO</div>;
+  return <div className="content-page">TODO</div>;
 };
 
 export default Manual;

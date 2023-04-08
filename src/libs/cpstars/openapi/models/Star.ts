@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { Identifiers } from './Identifiers';
+import type { Identifier } from './Identifier';
 import {
-    IdentifiersFromJSON,
-    IdentifiersFromJSONTyped,
-    IdentifiersToJSON,
-} from './Identifiers';
+    IdentifierFromJSON,
+    IdentifierFromJSONTyped,
+    IdentifierToJSON,
+} from './Identifier';
 import type { Magnitude } from './Magnitude';
 import {
     MagnitudeFromJSON,
@@ -130,10 +130,10 @@ export interface Star {
     magnitudes?: Array<Magnitude>;
     /**
      * 
-     * @type {Identifiers}
+     * @type {Identifier}
      * @memberof Star
      */
-    identifiers?: Identifiers;
+    identifier?: Identifier;
     /**
      * 
      * @type {Array<Motion>}
@@ -187,7 +187,7 @@ export function StarFromJSONTyped(json: any, ignoreDiscriminator: boolean): Star
         'alpha': !exists(json, 'alpha') ? undefined : json['alpha'],
         'delta': !exists(json, 'delta') ? undefined : json['delta'],
         'magnitudes': !exists(json, 'magnitudes') ? undefined : ((json['magnitudes'] as Array<any>).map(MagnitudeFromJSON)),
-        'identifiers': !exists(json, 'identifiers') ? undefined : IdentifiersFromJSON(json['identifiers']),
+        'identifier': !exists(json, 'identifier') ? undefined : IdentifierFromJSON(json['identifier']),
         'motions': !exists(json, 'motions') ? undefined : ((json['motions'] as Array<any>).map(MotionFromJSON)),
         'radialVelocities': !exists(json, 'radialVelocities') ? undefined : ((json['radialVelocities'] as Array<any>).map(RadialVelocityFromJSON)),
         'starDatasourceAttributes': !exists(json, 'starDatasourceAttributes') ? undefined : ((json['starDatasourceAttributes'] as Array<any>).map(StarDatasourceAttributeFromJSON)),
@@ -216,7 +216,7 @@ export function StarToJSON(value?: Star | null): any {
         'alpha': value.alpha,
         'delta': value.delta,
         'magnitudes': value.magnitudes === undefined ? undefined : ((value.magnitudes as Array<any>).map(MagnitudeToJSON)),
-        'identifiers': IdentifiersToJSON(value.identifiers),
+        'identifier': IdentifierToJSON(value.identifier),
         'motions': value.motions === undefined ? undefined : ((value.motions as Array<any>).map(MotionToJSON)),
         'radialVelocities': value.radialVelocities === undefined ? undefined : ((value.radialVelocities as Array<any>).map(RadialVelocityToJSON)),
         'starDatasourceAttributes': value.starDatasourceAttributes === undefined ? undefined : ((value.starDatasourceAttributes as Array<any>).map(StarDatasourceAttributeToJSON)),

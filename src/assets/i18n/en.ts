@@ -2,8 +2,9 @@ const en = () => {
   return {
     translation: {
       about: {
+        title: 'About',
         project: {
-          name: 'Project',
+          title: 'Project',
           description: {
             created_on: 'Chemically Peculiar Stars Database project was created in May 2023.',
             created_for:
@@ -23,6 +24,15 @@ const en = () => {
             },
           },
         },
+        datasources: {
+          bibcode: 'Bibcode',
+          name: 'Name',
+          title: 'Datasources',
+          year: 'Year',
+        },
+      },
+      datasource_details: {
+        bibcode: 'Bibcode',
       },
       drawer: {
         home: 'Home',
@@ -33,11 +43,15 @@ const en = () => {
         client_version: 'Client Version',
       },
       general: {
+        buttons: {
+          back: 'Back',
+        },
         university: {
           name: 'Masaryk University',
         },
       },
       home: {
+        export: 'Export',
         input_form: {
           select_options: {
             id: 'Id',
@@ -46,16 +60,19 @@ const en = () => {
           id: 'Id',
           coordinates: {
             name: 'Coordinates',
-            ra: 'ra',
-            dec: 'dec',
-            radius: 'radius',
+            ra: 'RA',
+            dec: 'Dec',
+            radius: 'Radius',
           },
         },
+        reset: 'Reset',
       },
       project: {
-        title: 'CP-Stars',
+        title: 'CP Stars',
       },
       star_details: {
+        binary_system_component: 'Binary system component',
+        category_probability: 'Ap/Am probability',
         coordinates: {
           alpha: 'Alpha',
           dec: 'Declination',
@@ -66,9 +83,12 @@ const en = () => {
           ra: 'Right Ascension',
           value: 'value',
         },
+        effective_temperature: 'Effective Temperature',
         id_2009_A_AND_A_498_961_R: 'Renson',
         identifiers: {
+          datasource: 'Datasource',
           external: 'External',
+          name: 'Name',
           title: 'Identifiers',
         },
         magnitudes: {
@@ -104,6 +124,14 @@ const en = () => {
           radial_velocity: 'Radial velocity',
           radial_velocity_error: 'Radial velocity error',
           title: 'Radial velocities',
+        },
+        redshift: 'Redshift',
+        star_datasource_attributes: {
+          attribute_description: 'description',
+          attribute_name: 'attribute',
+          datasource_name: 'datasource',
+          title: 'Attributes',
+          value: 'value',
         },
       },
     },

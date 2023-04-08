@@ -14,6 +14,17 @@
 
 
 import * as runtime from '../runtime';
+import type {
+  ExternalDetails,
+} from '../models';
+import {
+    ExternalDetailsFromJSON,
+    ExternalDetailsToJSON,
+} from '../models';
+
+export interface GetExternalDetailsRequest {
+    name: string;
+}
 
 export interface GetIdentifiersRequest {
     name: string;
@@ -25,6 +36,40 @@ export interface GetIdentifiersRequest {
 export class ExternalServicesControllerApi extends runtime.BaseAPI {
 
     /**
+     * Response contains data obtained from external sources (AstroSearcher). IMPORTANT: Querying external sources may take some time.
+     * Get data about specified object from external sources.
+     */
+    async getExternalDetailsRaw(requestParameters: GetExternalDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExternalDetails>> {
+        if (requestParameters.name === null || requestParameters.name === undefined) {
+            throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling getExternalDetails.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/external/astrosearcher/{name}`.replace(`{${"name"}}`, encodeURIComponent(String(requestParameters.name))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ExternalDetailsFromJSON(jsonValue));
+    }
+
+    /**
+     * Response contains data obtained from external sources (AstroSearcher). IMPORTANT: Querying external sources may take some time.
+     * Get data about specified object from external sources.
+     */
+    async getExternalDetails(requestParameters: GetExternalDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExternalDetails> {
+        const response = await this.getExternalDetailsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Response contains list of identifiers obtained from AstroSearcher application. IMPORTANT: Querying external sources may take some time.
+     * Get identifiers from external sources (AstroSearcher).
      */
     async getIdentifiersRaw(requestParameters: GetIdentifiersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         if (requestParameters.name === null || requestParameters.name === undefined) {
@@ -46,6 +91,8 @@ export class ExternalServicesControllerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Response contains list of identifiers obtained from AstroSearcher application. IMPORTANT: Querying external sources may take some time.
+     * Get identifiers from external sources (AstroSearcher).
      */
     async getIdentifiers(requestParameters: GetIdentifiersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.getIdentifiersRaw(requestParameters, initOverrides);

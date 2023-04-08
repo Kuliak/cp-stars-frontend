@@ -1,163 +1,116 @@
+import Paper from '@mui/material/Paper';
+import { Button, Collapse, Grid, TextField } from '@mui/material';
+import { Key, useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
-import TableContainer from '@mui/material/TableContainer';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableRow from '@mui/material/TableRow';
-import { CircularProgress, Collapse, Grid, TableCell } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Key, useEffect, useState } from 'react';
-import React from 'react';
-import { ExternalServicesControllerApi, Identifiers } from '../../libs/cpstars/openapi';
+import { useDebounce } from '../../services/DataUtils';
+import ClearIcon from '@mui/icons-material/Clear';
+import Box from '@mui/material/Box';
 
 interface IdentifiersListProps {
-  id2009AANDA498961R: string | undefined;
-  identifiers: Identifiers | undefined;
+  identifiers: string[];
 }
 
 const IdentifiersList = (props: IdentifiersListProps) => {
   const { t } = useTranslation();
-
-  const [externalServicesController] = useState(() => new ExternalServicesControllerApi());
-
-  const [open, setOpen] = useState(false);
   const [externalOpen, setExternalOpen] = useState(false);
 
-  const [loading, setLoading] = useState(true);
-  const [externalAliases, setExternalAliases] = useState<String[]>([]);
+  const [filteredIdentifiers, setFilteredIdentifiers] = useState<String[]>(props.identifiers);
+
+  const [searched, setSearched] = useState('');
+  const debouncedSearchTerm = useDebounce(searched, 200);
+
+  const resetFilter = () => {
+    setSearched('');
+    applyFilter('');
+  };
+
+  const applyFilter = useCallback(
+    (identifierFilter: string | undefined) => {
+      let filtered = props.identifiers;
+
+      if (identifierFilter && identifierFilter.length !== 0) {
+        filtered = filtered.filter((identifier) => {
+          return identifier && identifier.toLowerCase().includes(identifierFilter.toLowerCase());
+        });
+      }
+
+      setFilteredIdentifiers(filtered);
+    },
+    [props.identifiers]
+  );
 
   useEffect(() => {
-    let name;
-    if (props.id2009AANDA498961R) {
-      name = 'Renson' + props.id2009AANDA498961R;
-    } else if (props.identifiers) {
-      if (props.identifiers.hd) {
-        name = 'HD' + props.identifiers.hd;
-      } else if (props.identifiers.hip) {
-        name = 'HIP' + props.identifiers.hip;
-      } else if (props.identifiers.tyc) {
-        name = 'TYC' + props.identifiers.tyc;
-      } else if (props.identifiers.gaiaDR2) {
-        name = 'Gaia DR2' + props.identifiers.gaiaDR2;
-      } else if (props.identifiers.gaiaDR3) {
-        name = 'Gaia DR3' + props.identifiers.gaiaDR3;
-      }
-    }
-
-    if (!name) {
-      setLoading(false);
-      return;
-    }
-
-    externalServicesController.getIdentifiers({ name: name }).then((data) => {
-      setExternalAliases(data);
-      setLoading(false);
-    });
+    applyFilter(debouncedSearchTerm);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setExternalAliases]);
+  }, [debouncedSearchTerm]);
 
   return (
-    <>
+    <Paper>
       <div
         style={{ alignItems: 'flex-start', cursor: 'pointer' }}
-        onClick={() => setOpen(!open)}>
+        className="mt-4"
+        onClick={() => setExternalOpen(!externalOpen)}>
         <IconButton
           aria-label="expand row"
           size="small"
           color="info">
-          {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
-          {t('star_details.identifiers.title')}
+          {externalOpen ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+          {t('star_details.identifiers.external')}
         </IconButton>
       </div>
-      <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
-          <TableBody>
-            <TableRow>
-              <TableCell
-                style={{ paddingBottom: open ? 16 : 0, paddingTop: open ? 16 : 0 }}
-                colSpan={6}>
-                <Collapse
-                  in={open}
-                  timeout="auto"
-                  unmountOnExit>
-                  <Grid>
-                    {props.identifiers && (
-                      <>
-                        <Grid item>
-                          <b>HD:</b> {props.identifiers.hd}
-                        </Grid>
-                        <Grid item>
-                          <b>HIP:</b> {props.identifiers.hip}
-                        </Grid>
-                        <Grid item>
-                          <b>TYC:</b> {props.identifiers.tyc}
-                        </Grid>
-                        <Grid item>
-                          <b>DR2:</b> {props.identifiers.gaiaDR2}
-                        </Grid>
-                        <Grid item>
-                          <b>DR3:</b> {props.identifiers.gaiaDR3}
-                        </Grid>
-                      </>
-                    )}
-                  </Grid>
-                  <div
-                    style={{ alignItems: 'flex-start', cursor: 'pointer' }}
-                    className="mt-4"
-                    onClick={() => setExternalOpen(!externalOpen)}>
-                    <IconButton
-                      aria-label="expand row"
-                      size="small"
-                      color="info">
-                      {externalOpen ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
-                      {t('star_details.identifiers.external')}
-                    </IconButton>
-                  </div>
-                  {loading && <CircularProgress />}
-                  {!loading && (
-                    <TableContainer component={Paper}>
-                      <Table aria-label="collapsible table">
-                        <TableBody>
-                          <TableRow>
-                            <TableCell
-                              style={{
-                                paddingBottom: externalOpen ? 16 : 0,
-                                paddingTop: externalOpen ? 16 : 0,
-                              }}
-                              colSpan={6}>
-                              <Collapse
-                                in={externalOpen}
-                                timeout="auto"
-                                unmountOnExit>
-                                <Grid
-                                  container
-                                  direction="row"
-                                  spacing={3}
-                                  rowSpacing={1}>
-                                  {externalAliases.map((alias) => (
-                                    <Grid
-                                      key={alias as Key}
-                                      item
-                                      xs={6}>
-                                      {alias}
-                                    </Grid>
-                                  ))}
-                                </Grid>
-                              </Collapse>
-                            </TableCell>
-                          </TableRow>
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                  )}
-                </Collapse>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </>
+
+      <Paper className={externalOpen ? 'p-3' : '0'}>
+        <Collapse
+          in={externalOpen}
+          timeout="auto"
+          unmountOnExit>
+          <Box
+            alignItems={'flex-end'}
+            justifyContent={'flex-start'}
+            display={'flex'}
+            sx={{ marginBottom: '15px' }}>
+            <Button
+              variant="contained"
+              endIcon={<ClearIcon />}
+              onClick={resetFilter}
+              className="flex-button"
+              sx={{ bottom: 0, marginRight: '10px', padding: '12px 16px 12px 16px' }}>
+              <div>Reset</div>
+            </Button>
+            <TextField
+              label="Search"
+              type="search"
+              autoComplete="search-stars"
+              variant="filled"
+              value={searched}
+              sx={{ marginRight: '25px' }}
+              size={'small'}
+              onChange={(searchVal) => setSearched(searchVal.target.value)}
+            />
+          </Box>
+          <Grid
+            container
+            direction="row"
+            spacing={3}
+            rowSpacing={1}>
+            {filteredIdentifiers.map((identifier) => (
+              <Grid
+                key={identifier as Key}
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}>
+                {identifier}
+              </Grid>
+            ))}
+          </Grid>
+        </Collapse>
+      </Paper>
+    </Paper>
   );
 };
 

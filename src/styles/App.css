@@ -27,12 +27,6 @@ body {
   background-color: unset !important;
 }
 
-button {
-  display: flex !important;
-  align-items: flex-end !important;
-  align-content: flex-end !important;
-}
-
 header {
   background-color: rgba(0, 0, 0, var(--transparency-lvl));
 }
@@ -65,8 +59,18 @@ footer {
   align-items:center;
 }
 
+.content-page {
+  padding: 1.5rem 3rem !important;
+}
+
 .app {
   height: 100%;
+}
+
+.flex-button {
+  display: flex !important;
+  align-items: flex-end !important;
+  align-content: flex-end !important;
 }
 
 .text-box-transparent {
@@ -99,10 +103,6 @@ footer {
     margin-bottom: var(--h5-margin-bottom-small) !important;
   }
 
-  .center {
-    padding: 10px 15px;
-  }
-
   .form-style {
     border-radius: var(--box-border-radius-small);
   }
@@ -118,10 +118,6 @@ footer {
 
   h5 {
     margin-bottom: var(--h5-margin-bottom-small) !important;
-  }
-
-  .center {
-    padding: 15px 20px;
   }
 
   .form-select {
@@ -140,10 +136,6 @@ footer {
 
   h5 {
     margin-bottom: var(--h5-margin-bottom) !important;
-  }
-
-  .center {
-    padding: 15px 20px;
   }
 
   .form-select {
@@ -166,10 +158,6 @@ footer {
 
   h5 {
     margin-bottom: var(--h5-margin-bottom) !important;
-  }
-
-  .center {
-    padding: 20px 30px;
   }
 }
 

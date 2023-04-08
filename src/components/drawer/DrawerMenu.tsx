@@ -12,8 +12,11 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Content from '../Content';
 import { AppBar, DrawerCustom, DrawerHeader, Main } from './DrawerMenuStyles';
 import { MenuOptions } from './MenuOptions';
+import { useTranslation } from 'react-i18next';
 
 export default function PersistentDrawerLeft() {
+  const { t } = useTranslation();
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -44,7 +47,7 @@ export default function PersistentDrawerLeft() {
             variant="h6"
             noWrap
             component="div">
-            Persistent drawer
+            {t('project.title')}
           </Typography>
         </Toolbar>
       </AppBar>

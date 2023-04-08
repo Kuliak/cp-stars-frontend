@@ -7,7 +7,7 @@ const ProjectDescription = () => {
 
   return (
     <div>
-      <h3>{t('about.project.name')}</h3>
+      <h3>{t('about.project.title')}</h3>
       <p>{t('about.project.description.created_on')}</p>
       <p className="mb-4">{t('about.project.description.created_for')}</p>
 

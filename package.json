@@ -22,6 +22,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "2.7.0",
     "react-dom": "^18.2.0",
+    "react-horizontal-scrolling-menu": "4.0.0",
     "react-i18next": "^12.1.4",
     "react-material-ui-searchbar": "1.0.4",
     "react-router-dom": "6.8.0",
@@ -53,5 +54,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7"
   }
 }
