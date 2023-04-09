@@ -1,13 +1,13 @@
 export const paths = {
-  home: '/',
+  home: '',
   about: {
-    general: '/about',
+    general: 'about',
     project: '/project',
     datasources: '/datasources',
   },
-  manual: '/manual',
+  manual: 'manual',
   starDetails: {
-    general: '/stars',
+    general: 'stars',
     identifiers: '/identifiers',
     magnitudes: '/magnitudes',
     motions: '/motions',
