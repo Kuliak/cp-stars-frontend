@@ -13,7 +13,6 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ApiCaller from '../../../services/ApiCaller';
-import { blob } from 'stream/consumers';
 
 interface ExportStarsCSVDialogProps {
   starIds: readonly number[];
@@ -41,7 +40,7 @@ const ExportStarsCSVDialog = (props: ExportStarsCSVDialogProps) => {
   const handleExport = () => {
     ApiCaller.exportController
       .downloadStarsCSVRaw({
-        exportCsvForm: {
+        ExportCsvForm: {
           starIdsToExport: JSON.parse(JSON.stringify(props.starIds)),
           emptyValueRepresentation: emptyValueRepresentation,
           exportAttributes: exportAttributes,
@@ -59,7 +58,6 @@ const ExportStarsCSVDialog = (props: ExportStarsCSVDialogProps) => {
           a.setAttribute('download', 'stars.csv');
           a.click();
           // URL.revokeObjectURL(url);
-          console.log('done');
         });
       });
   };

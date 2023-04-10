@@ -294,7 +294,6 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
   };
 
   const handleExport = () => {
-    console.log('change');
     setExportDialogOpen(true);
   };
 
@@ -304,7 +303,6 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   useEffect(() => {
-    console.log('redraw: ' + isExportDialogOpen);
     applyFilter(debouncedSearchTerm, debouncedRATerm, debouncedDecTerm, debouncedRadiusTerm);
   }, [
     debouncedSearchTerm,
