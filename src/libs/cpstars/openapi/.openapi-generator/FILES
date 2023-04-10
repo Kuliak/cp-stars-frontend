@@ -7,6 +7,7 @@ index.ts
 models/AttributeDefinition.ts
 models/DataSource.ts
 models/DataSourceBasicInfo.ts
+models/ExportCsvForm.ts
 models/ExtendedStar.ts
 models/ExternalDetails.ts
 models/Identifier.ts

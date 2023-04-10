@@ -31,6 +31,7 @@ import { pointsDistance } from '../../services/MathUtils';
 import { getComparator, Order, stableSort, useDebounce } from '../../services/DataUtils';
 import { StarBasicInfo } from '../../libs/cpstars/openapi';
 import { useTranslation } from 'react-i18next';
+import ExportStarsCSVDialog from '../../components/dialogs/export/ExportStarsCSVDialog';
 
 interface HeadCell {
   id: keyof StarBasicInfo;
@@ -202,6 +203,8 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
   const [filterDec, setFilterDec] = useState(DEFAULT_RESET_DEC);
   const [filterRadius, setFilterRadius] = useState(DEFAULT_RESET_RADIUS);
 
+  const [isExportDialogOpen, setExportDialogOpen] = useState(false);
+
   const debouncedSearchTerm = useDebounce(searched, 200);
   const debouncedRATerm = useDebounce(filterRA, 200);
   const debouncedDecTerm = useDebounce(filterDec, 200);
@@ -290,14 +293,27 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
     setDense(event.target.checked);
   };
 
+  const handleExport = () => {
+    console.log('change');
+    setExportDialogOpen(true);
+  };
+
   const isSelected = (id: number) => selected.indexOf(id) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   useEffect(() => {
+    console.log('redraw: ' + isExportDialogOpen);
     applyFilter(debouncedSearchTerm, debouncedRATerm, debouncedDecTerm, debouncedRadiusTerm);
-  }, [debouncedSearchTerm, debouncedRadiusTerm, debouncedDecTerm, debouncedRATerm, applyFilter]);
+  }, [
+    debouncedSearchTerm,
+    debouncedRadiusTerm,
+    debouncedDecTerm,
+    debouncedRATerm,
+    applyFilter,
+    isExportDialogOpen,
+  ]);
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -367,7 +383,7 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
                       variant="contained"
                       endIcon={<IosShareIcon />}
                       disabled={selected.length === 0}
-                      onClick={resetFilter}
+                      onClick={handleExport}
                       className="flex-button"
                       sx={{ bottom: 0, marginRight: '10px', padding: '12px 16px 12px 16px' }}>
                       <div>{t('home.export')}</div>
@@ -458,16 +474,13 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
           </Box>
         </>
       )}
-
-      <FormControlLabel
-        control={
-          <Switch
-            checked={dense}
-            onChange={handleChangeDense}
-          />
-        }
-        label="Dense padding"
-      />
+      {isExportDialogOpen && (
+        <ExportStarsCSVDialog
+          starIds={selected}
+          isOpen={isExportDialogOpen}
+          onClose={() => setExportDialogOpen(false)}
+        />
+      )}
     </Box>
   );
 }

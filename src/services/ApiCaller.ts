@@ -1,5 +1,6 @@
 import {
   DatasourcesControllerApi,
+  ExportControllerApi,
   ExternalServicesControllerApi,
   StarsControllerApi,
 } from '../libs/cpstars/openapi';
@@ -10,6 +11,7 @@ import {
  */
 class ApiCaller {
   static readonly datasourcesController = new DatasourcesControllerApi();
+  static readonly exportController = new ExportControllerApi();
   static readonly externalServicesController = new ExternalServicesControllerApi();
   static readonly starsController = new StarsControllerApi();
 }

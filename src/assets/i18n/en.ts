@@ -34,6 +34,24 @@ const en = () => {
       datasource_details: {
         bibcode: 'Bibcode',
       },
+      dialogs: {
+        export: {
+          stars: {
+            attributes: 'Attributes',
+            buttons: {
+              cancel: 'Cancel',
+              export: 'Export',
+            },
+            empty_value_representation: 'Empty value representation',
+            identifiers: 'Identifiers',
+            info: 'stars will be exported. Select which additional information you want to export.',
+            magnitudes: 'Magnitudes',
+            motions: 'Motions (PM, Parallax)',
+            radial_velocities: 'Radial velocities',
+            title: 'Export',
+          },
+        },
+      },
       drawer: {
         home: 'Home',
         about: 'About',

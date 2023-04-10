@@ -13,7 +13,7 @@ interface CategoryCardProps {
 }
 
 const CategoryCard = (props: CategoryCardProps) => {
-  const cardMaxWidth = 180;
+  const cardMaxWidth = 200;
 
   const navigate = useNavigate();
 

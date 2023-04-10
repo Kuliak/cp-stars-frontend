@@ -3,6 +3,7 @@
 export * from './AttributeDefinition';
 export * from './DataSource';
 export * from './DataSourceBasicInfo';
+export * from './ExportCsvForm';
 export * from './ExtendedStar';
 export * from './ExternalDetails';
 export * from './Identifier';
