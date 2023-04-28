@@ -11,6 +11,9 @@ import StarDetailsRadialVelocities from '../pages/details/star/radialvelocities/
 import StarDetailsDatasourceAttributes from '../pages/details/star/attributes/StarDetailsDatasourceAttributes';
 import Datasources from '../pages/about/datasources/datasources';
 import DataSourceDetails from '../pages/details/datasouce/DataSourceDetails';
+import StarDetailsVizierMetadata from '../pages/details/star/vizier/StarDetailsVizierMetadata';
+import StarDetailsSpectrum from '../pages/details/star/spectrum/StarDetailsSpectrum';
+import StarDetailsLightCurve from '../pages/details/star/lightcurves/StarDetailsLightCurve';
 
 const Content = () => {
   return (
@@ -63,6 +66,18 @@ const Content = () => {
         <Route
           path={`${paths.starDetails.general}/:id${paths.starDetails.star_datasource_attributes}`}
           element={<StarDetailsDatasourceAttributes />}
+        />
+        <Route
+          path={`${paths.starDetails.general}/:id${paths.starDetails.vizier_metadata}`}
+          element={<StarDetailsVizierMetadata />}
+        />
+        <Route
+          path={`${paths.starDetails.general}/:id${paths.starDetails.light_curve}`}
+          element={<StarDetailsLightCurve />}
+        />
+        <Route
+          path={`${paths.starDetails.general}/:id${paths.starDetails.spectrum}`}
+          element={<StarDetailsSpectrum />}
         />
       </Routes>
       <Footer />

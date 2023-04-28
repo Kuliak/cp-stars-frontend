@@ -11,11 +11,13 @@ models/ExportCsvForm.ts
 models/ExtendedStar.ts
 models/ExternalDetails.ts
 models/Identifier.ts
+models/LightCurveMeasurement.ts
 models/Magnitude.ts
 models/Motion.ts
 models/RadialVelocity.ts
 models/Star.ts
 models/StarBasicInfo.ts
 models/StarDatasourceAttribute.ts
+models/VizierTable.ts
 models/index.ts
 runtime.ts

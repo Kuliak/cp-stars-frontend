@@ -28,7 +28,7 @@ const StarDetails = () => {
     ApiCaller.starsController.getStar({ id: Number(id) }).then((data) => {
       setDetails(data);
       ApiCaller.externalServicesController
-        .getExternalDetails({ name: 'Renson ' + data.id2009AANDA498961R })
+        .getSimbadExternalDetails({ name: 'Renson ' + data.id2009AANDA498961R })
         .then((external) => {
           setExternalData(external);
           setLoading(false);
@@ -135,6 +135,27 @@ const StarDetails = () => {
                 cardTitle={t('star_details.star_datasource_attributes.title')}
                 imagePath={require('../../../assets/img/attributes.jpg')}
                 navigatePath={`${paths.starDetails.general}/${id}${paths.starDetails.star_datasource_attributes}`}
+              />
+            </Grid>
+            <Grid item>
+              <CategoryCard
+                cardTitle={t('star_details.vizier_metadata.title')}
+                imagePath={require('../../../assets/img/vizier.jpeg')}
+                navigatePath={`${paths.starDetails.general}/${id}${paths.starDetails.vizier_metadata}`}
+              />
+            </Grid>
+            <Grid item>
+              <CategoryCard
+                cardTitle={t('star_details.light_curve.title')}
+                imagePath={require('../../../assets/img/vizier.jpeg')}
+                navigatePath={`${paths.starDetails.general}/${id}${paths.starDetails.light_curve}`}
+              />
+            </Grid>
+            <Grid item>
+              <CategoryCard
+                cardTitle={t('star_details.spectrum.title')}
+                imagePath={require('../../../assets/img/vizier.jpeg')}
+                navigatePath={`${paths.starDetails.general}/${id}${paths.starDetails.spectrum}`}
               />
             </Grid>
           </Grid>

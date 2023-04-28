@@ -109,6 +109,9 @@ const en = () => {
           name: 'Name',
           title: 'Identifiers',
         },
+        light_curve: {
+          title: 'Light curve',
+        },
         magnitudes: {
           band: 'band',
           datasources: {
@@ -144,12 +147,20 @@ const en = () => {
           title: 'Radial velocities',
         },
         redshift: 'Redshift',
+        spectrum: {
+          title: 'Spectrum',
+        },
         star_datasource_attributes: {
           attribute_description: 'description',
           attribute_name: 'attribute',
           datasource_name: 'datasource',
           title: 'Attributes',
           value: 'value',
+        },
+        vizier_metadata: {
+          description: 'Description',
+          name: 'Name',
+          title: 'Vizier metadata',
         },
       },
     },

@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { VizierTable } from './VizierTable';
+import {
+    VizierTableFromJSON,
+    VizierTableFromJSONTyped,
+    VizierTableToJSON,
+} from './VizierTable';
+
 /**
  * 
  * @export
@@ -39,16 +46,22 @@ export interface ExternalDetails {
     redshift?: number;
     /**
      * 
-     * @type {string}
+     * @type {Array<VizierTable>}
      * @memberof ExternalDetails
      */
-    effectiveTEMPERATUREVALUESREGEX?: string;
+    vizierTables?: Array<VizierTable>;
     /**
      * 
      * @type {string}
      * @memberof ExternalDetails
      */
     effectiveTemperatureValues?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExternalDetails
+     */
+    effectiveTEMPERATUREVALUESREGEX?: string;
 }
 
 /**
@@ -73,8 +86,9 @@ export function ExternalDetailsFromJSONTyped(json: any, ignoreDiscriminator: boo
         'effectiveTemperature': !exists(json, 'effectiveTemperature') ? undefined : json['effectiveTemperature'],
         'effectiveTemperatureUnit': !exists(json, 'effectiveTemperatureUnit') ? undefined : json['effectiveTemperatureUnit'],
         'redshift': !exists(json, 'redshift') ? undefined : json['redshift'],
-        'effectiveTEMPERATUREVALUESREGEX': !exists(json, 'effective_TEMPERATURE_VALUES_REGEX') ? undefined : json['effective_TEMPERATURE_VALUES_REGEX'],
+        'vizierTables': !exists(json, 'vizierTables') ? undefined : ((json['vizierTables'] as Array<any>).map(VizierTableFromJSON)),
         'effectiveTemperatureValues': !exists(json, 'effectiveTemperatureValues') ? undefined : json['effectiveTemperatureValues'],
+        'effectiveTEMPERATUREVALUESREGEX': !exists(json, 'effective_TEMPERATURE_VALUES_REGEX') ? undefined : json['effective_TEMPERATURE_VALUES_REGEX'],
     };
 }
 
@@ -90,8 +104,9 @@ export function ExternalDetailsToJSON(value?: ExternalDetails | null): any {
         'effectiveTemperature': value.effectiveTemperature,
         'effectiveTemperatureUnit': value.effectiveTemperatureUnit,
         'redshift': value.redshift,
-        'effective_TEMPERATURE_VALUES_REGEX': value.effectiveTEMPERATUREVALUESREGEX,
+        'vizierTables': value.vizierTables === undefined ? undefined : ((value.vizierTables as Array<any>).map(VizierTableToJSON)),
         'effectiveTemperatureValues': value.effectiveTemperatureValues,
+        'effective_TEMPERATURE_VALUES_REGEX': value.effectiveTEMPERATUREVALUESREGEX,
     };
 }
 

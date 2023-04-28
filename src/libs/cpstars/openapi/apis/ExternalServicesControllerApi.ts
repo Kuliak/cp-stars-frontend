@@ -16,17 +16,28 @@
 import * as runtime from '../runtime';
 import type {
   ExternalDetails,
+  LightCurveMeasurement,
 } from '../models';
 import {
     ExternalDetailsFromJSON,
     ExternalDetailsToJSON,
+    LightCurveMeasurementFromJSON,
+    LightCurveMeasurementToJSON,
 } from '../models';
 
-export interface GetExternalDetailsRequest {
+export interface GetIdentifiersRequest {
     name: string;
 }
 
-export interface GetIdentifiersRequest {
+export interface GetSimbadExternalDetailsRequest {
+    name: string;
+}
+
+export interface GetStarLightCurveMeasurementsRequest {
+    name: string;
+}
+
+export interface GetVizierMetadataRequest {
     name: string;
 }
 
@@ -34,38 +45,6 @@ export interface GetIdentifiersRequest {
  * 
  */
 export class ExternalServicesControllerApi extends runtime.BaseAPI {
-
-    /**
-     * Response contains data obtained from external sources (AstroSearcher). IMPORTANT: Querying external sources may take some time.
-     * Get data about specified object from external sources.
-     */
-    async getExternalDetailsRaw(requestParameters: GetExternalDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExternalDetails>> {
-        if (requestParameters.name === null || requestParameters.name === undefined) {
-            throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling getExternalDetails.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/external/astrosearcher/{name}`.replace(`{${"name"}}`, encodeURIComponent(String(requestParameters.name))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ExternalDetailsFromJSON(jsonValue));
-    }
-
-    /**
-     * Response contains data obtained from external sources (AstroSearcher). IMPORTANT: Querying external sources may take some time.
-     * Get data about specified object from external sources.
-     */
-    async getExternalDetails(requestParameters: GetExternalDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExternalDetails> {
-        const response = await this.getExternalDetailsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
 
     /**
      * Response contains list of identifiers obtained from AstroSearcher application. IMPORTANT: Querying external sources may take some time.
@@ -96,6 +75,102 @@ export class ExternalServicesControllerApi extends runtime.BaseAPI {
      */
     async getIdentifiers(requestParameters: GetIdentifiersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.getIdentifiersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Response contains Simbad data obtained from external sources (AstroSearcher). IMPORTANT: Querying external sources may take some time.
+     * Get data about specified object from Simbad using AstroSearcher.
+     */
+    async getSimbadExternalDetailsRaw(requestParameters: GetSimbadExternalDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExternalDetails>> {
+        if (requestParameters.name === null || requestParameters.name === undefined) {
+            throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling getSimbadExternalDetails.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/external/astrosearcher/simbad/{name}`.replace(`{${"name"}}`, encodeURIComponent(String(requestParameters.name))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ExternalDetailsFromJSON(jsonValue));
+    }
+
+    /**
+     * Response contains Simbad data obtained from external sources (AstroSearcher). IMPORTANT: Querying external sources may take some time.
+     * Get data about specified object from Simbad using AstroSearcher.
+     */
+    async getSimbadExternalDetails(requestParameters: GetSimbadExternalDetailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExternalDetails> {
+        const response = await this.getSimbadExternalDetailsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Response contains list of light curve measurements obtained from AstroSearcher application. Each measurements contains:     - time     - value     - error  IMPORTANT: Querying external sources may take some time.
+     * Get light curve measurements of star from external sources (AstroSearcher).
+     */
+    async getStarLightCurveMeasurementsRaw(requestParameters: GetStarLightCurveMeasurementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LightCurveMeasurement>>> {
+        if (requestParameters.name === null || requestParameters.name === undefined) {
+            throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling getStarLightCurveMeasurements.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/external/light-curve/{name}`.replace(`{${"name"}}`, encodeURIComponent(String(requestParameters.name))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(LightCurveMeasurementFromJSON));
+    }
+
+    /**
+     * Response contains list of light curve measurements obtained from AstroSearcher application. Each measurements contains:     - time     - value     - error  IMPORTANT: Querying external sources may take some time.
+     * Get light curve measurements of star from external sources (AstroSearcher).
+     */
+    async getStarLightCurveMeasurements(requestParameters: GetStarLightCurveMeasurementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LightCurveMeasurement>> {
+        const response = await this.getStarLightCurveMeasurementsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Response contains Vizier metadata obtained from external sources (AstroSearcher). IMPORTANT: Querying external sources may take some time.
+     * Get Vizier metadata about specified object using AstroSearcher.
+     */
+    async getVizierMetadataRaw(requestParameters: GetVizierMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExternalDetails>> {
+        if (requestParameters.name === null || requestParameters.name === undefined) {
+            throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling getVizierMetadata.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/external/astrosearcher/vizier-metadata/{name}`.replace(`{${"name"}}`, encodeURIComponent(String(requestParameters.name))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ExternalDetailsFromJSON(jsonValue));
+    }
+
+    /**
+     * Response contains Vizier metadata obtained from external sources (AstroSearcher). IMPORTANT: Querying external sources may take some time.
+     * Get Vizier metadata about specified object using AstroSearcher.
+     */
+    async getVizierMetadata(requestParameters: GetVizierMetadataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExternalDetails> {
+        const response = await this.getVizierMetadataRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
