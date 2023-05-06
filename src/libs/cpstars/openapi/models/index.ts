@@ -11,6 +11,7 @@ export * from './LightCurveMeasurement';
 export * from './Magnitude';
 export * from './Motion';
 export * from './RadialVelocity';
+export * from './SpectrumMeasurement';
 export * from './Star';
 export * from './StarBasicInfo';
 export * from './StarDatasourceAttribute';

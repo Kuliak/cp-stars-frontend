@@ -15,6 +15,7 @@ models/LightCurveMeasurement.ts
 models/Magnitude.ts
 models/Motion.ts
 models/RadialVelocity.ts
+models/SpectrumMeasurement.ts
 models/Star.ts
 models/StarBasicInfo.ts
 models/StarDatasourceAttribute.ts

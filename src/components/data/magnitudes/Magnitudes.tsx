@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { Magnitude } from '../../../libs/cpstars/openapi';
-import { useEffect, useState } from 'react';
 import MagnitudesPanel from './magnitudesPanel';
 import Paper from '@mui/material/Paper';
 import TableContainer from '@mui/material/TableContainer';

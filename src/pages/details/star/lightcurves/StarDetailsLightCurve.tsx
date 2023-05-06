@@ -23,12 +23,10 @@ const StarDetailsLightCurve = () => {
       return;
     }
 
-    ApiCaller.externalServicesController
-      .getStarLightCurveMeasurements({ name: id })
-      .then((data) => {
-        setMeasurements(data);
-        setLoading(false);
-      });
+    ApiCaller.starsController.getStarLightCurveMeasurements({ id: Number(id) }).then((data) => {
+      setMeasurements(data);
+      setLoading(false);
+    });
   }, [id]);
 
   return (

@@ -1,4 +1,4 @@
-import { Button, CircularProgress } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import ApiCaller from '../../../services/ApiCaller';
 import { DataSource } from '../../../libs/cpstars/openapi';

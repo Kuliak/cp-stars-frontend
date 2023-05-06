@@ -1,11 +1,8 @@
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import { paths } from '../../shared/paths';
 import { Button, Tooltip } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import MenuIcon from '@mui/icons-material/Menu';
-import IconButton from '@mui/material/IconButton';
 
 interface BackButtonProps {
   navigateTo: string;

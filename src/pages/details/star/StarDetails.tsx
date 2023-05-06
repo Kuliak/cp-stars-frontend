@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CircularProgress, Grid } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import Coordinates from './coordinates/Coordinates';
 import Paper from '@mui/material/Paper';
-import React from 'react';
 import CategoryCard from '../../../components/cards/CategoryCard';
 import { paths } from '../../../shared/paths';
 import ApiCaller from '../../../services/ApiCaller';
@@ -28,7 +27,7 @@ const StarDetails = () => {
     ApiCaller.starsController.getStar({ id: Number(id) }).then((data) => {
       setDetails(data);
       ApiCaller.externalServicesController
-        .getSimbadExternalDetails({ name: 'Renson ' + data.id2009AANDA498961R })
+        .getSimbadExternalDetails({ name: 'Renson ' + data.renson })
         .then((external) => {
           setExternalData(external);
           setLoading(false);
@@ -47,7 +46,7 @@ const StarDetails = () => {
                 style={{ display: 'inline-block' }}>
                 {t('star_details.id_2009_A_AND_A_498_961_R')}:
               </div>
-              {details.id2009AANDA498961R}
+              {details.renson}
             </div>
             <div className="fs-6">
               <div

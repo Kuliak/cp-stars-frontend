@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
-import { CircularProgress, Grid, TableCell } from '@mui/material';
+import { CircularProgress, TableCell } from '@mui/material';
 import IdentifiersList from '../../../../components/data/IdentifiersList';
 import ApiCaller from '../../../../services/ApiCaller';
 import { paths } from '../../../../shared/paths';

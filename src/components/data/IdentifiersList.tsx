@@ -1,7 +1,6 @@
 import Paper from '@mui/material/Paper';
 import { Button, Collapse, Grid, TextField } from '@mui/material';
-import { Key, useCallback, useEffect, useState } from 'react';
-import React from 'react';
+import React, { Key, useCallback, useEffect, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';

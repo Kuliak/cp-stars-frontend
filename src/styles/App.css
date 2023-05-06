@@ -12,6 +12,8 @@
   --h5-margin-bottom: 1rem;
   --h5-margin-bottom-small: 0.4rem;
 
+  --spectral-line-length-ratio: 7/9;
+
   --transparency-lvl: 0.6;
 }
 
@@ -106,6 +108,15 @@ footer {
   .form-style {
     border-radius: var(--box-border-radius-small);
   }
+
+  .spectrum {
+    width: 100%
+  }
+
+  .spectral-line{
+    width: calc(100% * var(--spectral-line-length-ratio));
+    height: 15px;
+  }
 }
 
 /***************************************************************/
@@ -123,6 +134,15 @@ footer {
   .form-select {
     min-width: 200px;
     max-width: 200px;
+  }
+
+  .spectrum {
+    width: 90%
+  }
+
+  .spectral-line{
+    width: calc(90% * var(--spectral-line-length-ratio));
+    height: 20px;
   }
 }
 
@@ -146,18 +166,77 @@ footer {
   .form-style {
     border-radius: var(--box-border-radius);
   }
+
+  .spectrum {
+    width: 80%
+  }
+
+  .spectral-line{
+    width: calc(80% * var(--spectral-line-length-ratio));
+    height: 25px;
+  }
 }
 
 /***************************************************************/
 /***************************************************************/
 
-@media only screen and (min-width: 1080px) and (max-width:2600px) {
+@media only screen and (min-width: 1080px) and (max-width:1440px) {
   h3 {
     margin-bottom: var(--h3-margin-bottom) !important;
   }
 
   h5 {
     margin-bottom: var(--h5-margin-bottom) !important;
+  }
+
+  .spectrum {
+    width: 75%
+  }
+
+  .spectral-line{
+    width: calc(75% * var(--spectral-line-length-ratio));
+    height: 30px;
+  }
+}
+
+/***************************************************************/
+/***************************************************************/
+
+@media only screen and (min-width: 1440px) and (max-width:1920px) {
+  h3 {
+    margin-bottom: var(--h3-margin-bottom) !important;
+  }
+
+  h5 {
+    margin-bottom: var(--h5-margin-bottom) !important;
+  }
+
+  .spectrum {
+    width: 65%
+  }
+
+  .spectral-line{
+    width: calc(65% * var(--spectral-line-length-ratio));
+    height: 35px;
+  }
+}
+
+@media only screen and (min-width: 1920px) and (max-width:2600px) {
+  h3 {
+    margin-bottom: var(--h3-margin-bottom) !important;
+  }
+
+  h5 {
+    margin-bottom: var(--h5-margin-bottom) !important;
+  }
+
+  .spectrum {
+    width: 50%
+  }
+
+  .spectral-line{
+    width: calc(50% * var(--spectral-line-length-ratio));
+    height: 40px;
   }
 }
 

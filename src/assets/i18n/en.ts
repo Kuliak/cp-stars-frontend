@@ -101,6 +101,7 @@ const en = () => {
           ra: 'Right Ascension',
           value: 'value',
         },
+        cpstars: 'CP-Stars',
         effective_temperature: 'Effective Temperature',
         id_2009_A_AND_A_498_961_R: 'Renson',
         identifiers: {
@@ -148,6 +149,8 @@ const en = () => {
         },
         redshift: 'Redshift',
         spectrum: {
+          flux: 'Flux',
+          wavelength: 'Wavelength [Angstrom]',
           title: 'Spectrum',
         },
         star_datasource_attributes: {

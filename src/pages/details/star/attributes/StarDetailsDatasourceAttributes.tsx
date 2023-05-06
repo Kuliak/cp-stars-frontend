@@ -6,7 +6,6 @@ import BackButton from '../../../../components/buttons/BackButton';
 import { paths } from '../../../../shared/paths';
 import Typography from '@mui/material/Typography';
 import { CircularProgress } from '@mui/material';
-import Magnitudes from '../../../../components/data/magnitudes/Magnitudes';
 import ApiCaller from '../../../../services/ApiCaller';
 import StarDatasourceAttributesList from '../../../../components/data/datasources/attributes/StarDatasourceAttributesList';
 

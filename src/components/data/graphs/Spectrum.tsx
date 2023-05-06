@@ -1,27 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-
-type DataPoint = {
-  name: string;
-  value: number;
-  error: number;
-};
+  VictoryAxis,
+  VictoryChart,
+  VictoryLabel,
+  VictoryLine,
+  VictoryTooltip,
+  VictoryZoomContainer,
+} from 'victory';
+import { SpectrumMeasurement } from '../../../libs/cpstars/openapi';
+import { useTranslation } from 'react-i18next';
+import SpectralGradient from './SpectralGradient';
 
 interface SpectrumProps {
-  data: DataPoint[];
+  data: SpectrumMeasurement[];
 }
-
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
 export const options = {
   responsive: true,
@@ -36,32 +28,64 @@ export const options = {
   },
 };
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: labels.map(() => 5),
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Dataset 2',
-      data: labels.map(() => 7),
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
-  ],
-};
-
 const Spectrum = (props: SpectrumProps) => {
-  ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+  const { t } = useTranslation();
+
+  const [lowerBound, setLowerBound] = useState<number>(3800);
+  const [upperBound, setUpperBound] = useState<number>(7800);
+
+  const setBounds = (lower: number, upper: number) => {
+    setLowerBound(lower);
+    setUpperBound(upper);
+  };
 
   return (
-    <Line
-      options={options}
-      data={data}
-    />
+    <>
+      <SpectralGradient
+        lower={lowerBound}
+        upper={upperBound}
+      />
+      <div
+        className="spectrum"
+        style={{ margin: 'auto' }}>
+        <VictoryChart
+          containerComponent={
+            <VictoryZoomContainer
+              zoomDimension={'x'}
+              onZoomDomainChange={(domain, zoomProps) =>
+                setBounds(domain.x[0] as number, domain.x[1] as number)
+              }
+            />
+          }>
+          <VictoryAxis
+            label={t('star_details.spectrum.flux')}
+            axisLabelComponent={<VictoryLabel dy={-12} />}
+            dependentAxis // Use dependentAxis to set the y-axis to be vertical.
+          />
+          <VictoryAxis
+            label={t('star_details.spectrum.wavelength')}
+            axisLabelComponent={<VictoryLabel dy={5} />}
+            offsetX={50} // Adjust this value to change the x-axis position horizontally.
+            offsetY={50}
+          />
+          <VictoryLine
+            domain={{ x: [3800, 7800], y: [-0.4, 1.0] }}
+            style={{
+              data: {
+                strokeWidth: 1.1,
+              },
+            }}
+            labelComponent={<VictoryTooltip />}
+            data={props.data.map((measurement) => {
+              return {
+                x: measurement.wavelength,
+                y: measurement.flux,
+              };
+            })}
+          />
+        </VictoryChart>
+      </div>
+    </>
   );
 };
 

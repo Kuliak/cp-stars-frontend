@@ -1,17 +1,33 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BackButton from '../../../../components/buttons/BackButton';
 import { paths } from '../../../../shared/paths';
 import Typography from '@mui/material/Typography';
 import { CircularProgress } from '@mui/material';
-import VizierMetadata from '../../../../components/data/VizierMetadata';
+import { SpectrumMeasurement } from '../../../../libs/cpstars/openapi';
+import ApiCaller from '../../../../services/ApiCaller';
+import Spectrum from '../../../../components/data/graphs/Spectrum';
 
 const StarDetailsSpectrum = () => {
   const { id } = useParams();
   const { t } = useTranslation();
 
   const [loading, setLoading] = useState(true);
+  const [measurements, setMeasurements] = useState<SpectrumMeasurement[] | null>(null);
+
+  useEffect(() => {
+    setLoading(true);
+    if (!id) {
+      setLoading(false);
+      return;
+    }
+
+    ApiCaller.starsController.getStarSpectraMeasurements({ id: Number(id) }).then((data) => {
+      setMeasurements(data);
+      setLoading(false);
+    });
+  }, [id]);
 
   return (
     <div className="content-page">
@@ -24,7 +40,7 @@ const StarDetailsSpectrum = () => {
         </Typography>
       </div>
       {loading && <CircularProgress />}
-      {/*{vizierTables && <VizierMetadata vizierTables={vizierTables ? vizierTables : []} />}*/}
+      {measurements && <Spectrum data={measurements ? measurements : []} />}
     </div>
   );
 };

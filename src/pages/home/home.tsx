@@ -1,7 +1,6 @@
 import BasicInfoStarsTable from './Stars';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CircularProgress } from '@mui/material';
-import React from 'react';
 import { StarBasicInfo } from '../../libs/cpstars/openapi';
 import ApiCaller from '../../services/ApiCaller';
 

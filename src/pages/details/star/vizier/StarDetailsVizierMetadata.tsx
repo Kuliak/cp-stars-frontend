@@ -23,12 +23,18 @@ const StarDetailsVizierMetadata = () => {
       return;
     }
 
-    ApiCaller.externalServicesController
-      .getVizierMetadata({ name: 'Renson ' + id })
-      .then((data) => {
-        setVizierTables(data.vizierTables ? data.vizierTables : []);
+    ApiCaller.starsController.getStarIdentifiers({ starId: Number(id) }).then((identifiers) => {
+      if (identifiers.length > 0) {
+        ApiCaller.externalServicesController
+          .getVizierMetadata({ name: `${identifiers[0].datasource.name} ${identifiers[0].name}` })
+          .then((data) => {
+            setVizierTables(data.vizierTables ? data.vizierTables : []);
+            setLoading(false);
+          });
+      } else {
         setLoading(false);
-      });
+      }
+    });
   }, [id]);
 
   return (

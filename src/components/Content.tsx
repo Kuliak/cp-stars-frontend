@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { paths } from '../shared/paths';
-import { Project, Home, Manual, About } from '../pages/pages';
+import { About, Home, Manual, Project } from '../pages/pages';
 import Footer from './Footer';
 import StarDetails from '../pages/details/star/StarDetails';
 import React from 'react';
