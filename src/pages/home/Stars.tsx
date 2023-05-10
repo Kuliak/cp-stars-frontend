@@ -191,7 +191,6 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
   const [orderBy, setOrderBy] = useState<keyof StarBasicInfo>('id');
   const [selected, setSelected] = useState<readonly number[]>([]);
   const [page, setPage] = useState(0);
-  const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const [rows, setRows] = useState<StarBasicInfo[]>(props.originalRows);
@@ -286,18 +285,11 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
     setPage(0);
   };
 
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
-
   const handleExport = () => {
     setExportDialogOpen(true);
   };
 
   const isSelected = (id: number) => selected.indexOf(id) !== -1;
-
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   useEffect(() => {
     applyFilter(debouncedSearchTerm, debouncedRATerm, debouncedDecTerm, debouncedRadiusTerm);
@@ -395,8 +387,7 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
               <TableContainer>
                 <Table
                   sx={{ minWidth: 750 }}
-                  aria-labelledby="tableTitle"
-                  size={dense ? 'small' : 'medium'}>
+                  aria-labelledby="tableTitle">
                   <EnhancedTableHead
                     numSelected={selected.length}
                     order={order}
@@ -445,14 +436,6 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
                           </TableRow>
                         );
                       })}
-                    {emptyRows > 0 && (
-                      <TableRow
-                        style={{
-                          height: (dense ? 33 : 53) * emptyRows,
-                        }}>
-                        <TableCell colSpan={6} />
-                      </TableRow>
-                    )}
                   </TableBody>
                 </Table>
               </TableContainer>
