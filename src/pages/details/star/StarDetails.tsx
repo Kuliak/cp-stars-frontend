@@ -40,14 +40,17 @@ const StarDetails = () => {
       {details && (
         <>
           <Paper className="p-4">
-            <div className="fs-5 mb-3">
-              <div
-                className="fw-bold me-2"
-                style={{ display: 'inline-block' }}>
-                {t('star_details.id_2009_A_AND_A_498_961_R')}:
-              </div>
-              {details.renson}
-            </div>
+            <table className="mb-4 fs-5">
+              <tr>
+                <th className="fw-bold">{t('star_details.cp_stars')}:</th>
+                <th className="fw-normal ps-2">{details.id}</th>
+              </tr>
+              <tr>
+                <th className="fw-bold">{t('star_details.id_2009_A_AND_A_498_961_R')}:</th>
+                <th className="fw-normal ps-2">{details.renson}</th>
+              </tr>
+            </table>
+
             <div className="fs-6">
               <div
                 className="fw-bold me-2"

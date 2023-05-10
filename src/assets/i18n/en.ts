@@ -188,7 +188,7 @@ const en = () => {
           ra: 'Right Ascension',
           value: 'value',
         },
-        cpstars: 'CP-Stars',
+        cp_stars: 'CP-Stars',
         effective_temperature: 'Effective Temperature',
         id_2009_A_AND_A_498_961_R: 'Renson',
         identifiers: {
