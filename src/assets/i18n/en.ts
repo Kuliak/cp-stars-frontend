@@ -199,6 +199,7 @@ const en = () => {
         },
         light_curve: {
           title: 'Light curve',
+          no_data: 'Unfortunately, no data for stellar light curve were acquired.',
         },
         magnitudes: {
           band: 'band',
@@ -236,9 +237,10 @@ const en = () => {
         },
         redshift: 'Redshift',
         spectrum: {
-          flux: 'Flux',
-          wavelength: 'Wavelength [Angstrom]',
           title: 'Spectrum',
+          flux: 'Flux',
+          no_data: 'Unfortunately, no data for stellar spectrum were acquired.',
+          wavelength: 'Wavelength [Angstrom]',
         },
         star_datasource_attributes: {
           attribute_description: 'description',

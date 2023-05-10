@@ -40,7 +40,12 @@ const StarDetailsLightCurve = () => {
         </Typography>
       </div>
       {loading && <CircularProgress />}
-      {measurements && <LightCurve data={measurements ? measurements : []} />}
+      {measurements &&
+        (measurements.length > 0 ? (
+          <LightCurve data={measurements ? measurements : []} />
+        ) : (
+          <Typography className="fs-5">{t('star_details.light_curve.no_data')}</Typography>
+        ))}
     </div>
   );
 };

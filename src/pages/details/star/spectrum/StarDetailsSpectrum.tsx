@@ -40,7 +40,12 @@ const StarDetailsSpectrum = () => {
         </Typography>
       </div>
       {loading && <CircularProgress />}
-      {measurements && <Spectrum data={measurements ? measurements : []} />}
+      {measurements &&
+        (measurements.length > 0 ? (
+          <Spectrum data={measurements ? measurements : []} />
+        ) : (
+          <Typography className="fs-5">{t('star_details.spectrum.no_data')}</Typography>
+        ))}
     </div>
   );
 };
