@@ -10,7 +10,7 @@ const Graphics = () => {
       <ul>
         <li>
           <a
-            className="link-warning text-decoration-none"
+            className="link-primary text-decoration-none"
             target="_blank"
             rel="noreferrer"
             href="https://getbootstrap.com/">
@@ -19,7 +19,7 @@ const Graphics = () => {
         </li>
         <li>
           <a
-            className="link-warning text-decoration-none"
+            className="link-primary text-decoration-none"
             target="_blank"
             rel="noreferrer"
             href="https://reactjs.org/">

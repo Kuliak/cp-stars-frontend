@@ -10,7 +10,7 @@ const Server = () => {
       <ul>
         <li>
           <a
-            className="link-warning text-decoration-none"
+            className="link-primary text-decoration-none"
             target="_blank"
             rel="noreferrer"
             href="https://astrosearcher.cerit-sc.cz/index">

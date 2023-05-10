@@ -43,7 +43,14 @@ export default function PersistentDrawerLeft() {
             sx={{ mr: 2, ...(open && { display: 'none' }) }}>
             <MenuIcon />
           </IconButton>
+          <div className={'float-right'}>
+            <img
+              className={'float-right'}
+              src={require('../../assets/img/e-infra-cz-logo2-small.png')}
+            />
+          </div>
           <Typography
+            className="ms-4"
             variant="h6"
             noWrap
             component="div">

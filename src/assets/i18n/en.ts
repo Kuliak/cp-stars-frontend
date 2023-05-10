@@ -17,6 +17,14 @@ const en = () => {
         acknowledgements: {
           name: 'Acknowledgements',
           graphics: 'Project graphical design was developed with support of:',
+          hosting: {
+            description: {
+              host: 'CP-Stars application is hosted by ',
+              on_behalf: ', on behalf of ',
+            },
+            user_behalf:
+              'Department of Theoretical Physics and Astrophysics, Faculty of Science, Masaryk University, Brno, Czech Republic',
+          },
           server: {
             resources_description: 'Server side of application is using:',
             astrosearcher: {
@@ -84,6 +92,25 @@ const en = () => {
           },
         },
         reset: 'Reset',
+      },
+      manual: {
+        title: 'Manual',
+        description:
+          'This page contains user manual for graphical user interface of chemically peculiar (CP) stars database. ' +
+          'Manual is divided into several sections (by pages) and describes what information and options it provides. ' +
+          'In case more detailed (REST API, ...) or technical information is required, text of the thesis, which this GUI was part of, can be used.',
+        sections: {
+          home_page: {
+            title: 'Home page (CP stars list)',
+          },
+          star_details: {
+            title: 'Star details',
+            magnitudes: 'Magnitudes',
+            motions: 'Motion-related values (proper motion, parallax)',
+            radial_velocities: 'Radial velocities',
+            identifiers: 'Identifiers',
+          },
+        },
       },
       project: {
         title: 'CP Stars',
