@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  createContainer,
   VictoryAxis,
   VictoryChart,
   VictoryLabel,
@@ -39,6 +40,8 @@ const Spectrum = (props: SpectrumProps) => {
     setUpperBound(upper);
   };
 
+  const VictoryZoomVoronoiContainer = createContainer('zoom', 'voronoi');
+
   return (
     <>
       <SpectralGradient
@@ -46,15 +49,19 @@ const Spectrum = (props: SpectrumProps) => {
         upper={upperBound}
       />
       <div
-        className="spectrum"
+        className="graph"
         style={{ margin: 'auto' }}>
         <VictoryChart
           containerComponent={
-            <VictoryZoomContainer
+            <VictoryZoomVoronoiContainer
+              // @ts-ignore
               zoomDimension={'x'}
-              onZoomDomainChange={(domain, zoomProps) =>
-                setBounds(domain.x[0] as number, domain.x[1] as number)
-              }
+              // @ts-ignore
+              onZoomDomainChange={(domain, zoomProps) => {
+                setBounds(domain.x[0] as number, domain.x[1] as number);
+              }}
+              // @ts-ignore
+              labels={({ datum }) => `${datum.y}`}
             />
           }>
           <VictoryAxis

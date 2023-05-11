@@ -6,11 +6,9 @@ import DrawerMenu from './components/drawer/DrawerMenu';
 
 function App() {
   return (
-    <>
-      <Router>
-        <DrawerMenu />
-      </Router>
-    </>
+    <Router>
+      <DrawerMenu />
+    </Router>
   );
 }
 

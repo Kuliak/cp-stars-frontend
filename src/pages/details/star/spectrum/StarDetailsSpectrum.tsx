@@ -8,6 +8,7 @@ import { CircularProgress } from '@mui/material';
 import { SpectrumMeasurement } from '../../../../libs/cpstars/openapi';
 import ApiCaller from '../../../../services/ApiCaller';
 import Spectrum from '../../../../components/data/graphs/Spectrum';
+import { createContainer } from 'victory';
 
 const StarDetailsSpectrum = () => {
   const { id } = useParams();

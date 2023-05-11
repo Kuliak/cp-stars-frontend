@@ -199,7 +199,9 @@ const en = () => {
         },
         light_curve: {
           title: 'Light curve',
+          flux: 'Flux',
           no_data: 'Unfortunately, no data for stellar light curve were acquired.',
+          time: 'Barycentric Julian Date',
         },
         magnitudes: {
           band: 'band',

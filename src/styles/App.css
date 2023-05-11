@@ -125,7 +125,7 @@ footer {
     border-radius: var(--box-border-radius-small);
   }
 
-  .spectrum {
+  .graph {
     width: 100%
   }
 
@@ -152,7 +152,7 @@ footer {
     max-width: 200px;
   }
 
-  .spectrum {
+  .graph {
     width: 90%
   }
 
@@ -183,7 +183,7 @@ footer {
     border-radius: var(--box-border-radius);
   }
 
-  .spectrum {
+  .graph {
     width: 80%
   }
 
@@ -205,7 +205,7 @@ footer {
     margin-bottom: var(--h5-margin-bottom) !important;
   }
 
-  .spectrum {
+  .graph {
     width: 75%
   }
 
@@ -227,7 +227,7 @@ footer {
     margin-bottom: var(--h5-margin-bottom) !important;
   }
 
-  .spectrum {
+  .graph {
     width: 65%
   }
 
@@ -246,7 +246,7 @@ footer {
     margin-bottom: var(--h5-margin-bottom) !important;
   }
 
-  .spectrum {
+  .graph {
     width: 50%
   }
 
