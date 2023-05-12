@@ -4,11 +4,8 @@ import ManualHomePage from './ManualHomePage';
 import ManualStarDetails from './ManualStarDetails';
 import { Button } from '@mui/material';
 import { BASE_PATH } from '../../libs/cpstars/openapi';
-import { useNavigate } from 'react-router-dom';
 
 const Manual = () => {
-  const navigate = useNavigate();
-
   const { t } = useTranslation();
 
   const REST_API_DOCS_PATH = '/swagger-ui/index.html';
