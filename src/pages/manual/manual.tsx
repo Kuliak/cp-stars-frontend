@@ -2,9 +2,16 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import ManualHomePage from './ManualHomePage';
 import ManualStarDetails from './ManualStarDetails';
+import { Button } from '@mui/material';
+import { BASE_PATH } from '../../libs/cpstars/openapi';
+import { useNavigate } from 'react-router-dom';
 
 const Manual = () => {
+  const navigate = useNavigate();
+
   const { t } = useTranslation();
+
+  const REST_API_DOCS_PATH = '/swagger-ui/index.html';
 
   const sections = [
     {
@@ -55,6 +62,19 @@ const Manual = () => {
   return (
     <div className="content-page">
       <h3>{t('manual.title')}</h3>
+      <Button
+        variant="contained"
+        className="flex-button mb-5"
+        color="success"
+        sx={{ bottom: 0, padding: '10px 16px 10px 16px' }}>
+        <a
+          href={BASE_PATH + REST_API_DOCS_PATH}
+          className="text-decoration-none text-white"
+          target="_blank"
+          rel="noopener noreferrer">
+          {t('manual.buttons.rest_api')}
+        </a>
+      </Button>
 
       <p className="manual-text">{t('manual.description')}</p>
 

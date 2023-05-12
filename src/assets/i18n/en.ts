@@ -95,10 +95,13 @@ const en = () => {
       },
       manual: {
         title: 'Manual',
+        buttons: {
+          rest_api: 'REST API Docs',
+        },
         description:
           'This page contains user manual for graphical user interface of chemically peculiar (CP) stars database. ' +
           'Manual is divided into several sections (by pages) and describes what information and options it provides. ' +
-          'In case more detailed (REST API, ...) or technical information is required, text of the thesis, which this GUI was part of, can be used.',
+          'In case more detailed (technical) information is required, text of the thesis, which this GUI was part of, can be used.',
         navigation:
           'Throughout the whole application, the collapsible menu on the left side can be used to either return back to the Home page or get to the About page or Manual page.',
         sections: {
