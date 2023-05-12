@@ -149,7 +149,7 @@ const StarDetails = () => {
             <Grid item>
               <CategoryCard
                 cardTitle={t('star_details.light_curve.title')}
-                imagePath={require('../../../assets/img/vizier.jpeg')}
+                imagePath={require('../../../assets/img/light-curve-graph.jpg')}
                 navigatePath={`${paths.starDetails.general}/${id}${paths.starDetails.light_curve}`}
               />
             </Grid>
