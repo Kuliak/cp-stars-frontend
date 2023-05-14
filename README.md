@@ -1,22 +1,47 @@
 # Chemically Peculiar stars database GUI client
 
+
+Chemically peculiar (CP) stars are the subject of astronomical research
+in recent decades in particular. Their nature makes them classifiable
+on different levels of certainty, creating inconsistent sets of stars.
+
+CP-Stars application offers simple access to the list of [Ap, HgMn and Am stars](https://ui.adsabs.harvard.edu/abs/2009A%26A...498..961R/abstract).
+
 ## Backend part: [CP-Stars](https://github.com/Kuliak/cp-stars)
 
-## Available Scripts
+## Usage
 
-In the project directory, you can run:
+In order to run the CP-Stars graphical user interface, either this repository has to be cloned:
 
-### `npm start`
+```
+git clone https://github.com/Kuliak/cp-stars-frontend.git
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+or by downloading [**the latest release version**](https://github.com/Kuliak/cp-stars-frontend/releases).
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+After obtaining (downloading) the required CP-Stars GUI application, dependencies have to be installed.
 
-### `npm run build`
+For Unix-based system
+```
+cd <GUI_folder>
+npm install
+```
+
+When all dependencies were installed successfully, application can be launched using following
+command in the project root folder:
+
+```
+npm start
+```
+
+
+
+## Other commands
+
+```
+npm run build
+```
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
