@@ -31,7 +31,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "openapi-gen": "openapi-generator-cli generate -i http://localhost:8081/api/docs.yaml -g typescript-fetch -o src/libs/cpstars/openapi --additional-properties=paramNaming=original,enumPropertyNaming=original",
+    "openapi-gen": "openapi-generator-cli generate -i https://cp-stars.cerit-sc.cz:8081/api/docs.yaml -g typescript-fetch -o src/libs/cpstars/openapi --additional-properties=paramNaming=original,enumPropertyNaming=original",
     "start": "react-scripts start  --max_old_space_size=1024",
     "build": "react-scripts build",
     "test": "react-scripts test",
