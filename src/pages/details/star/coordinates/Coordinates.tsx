@@ -4,8 +4,8 @@ import React from 'react';
 import CoordinatesPairTable from './coordinates-pair-table';
 
 interface CoordinatesProps {
-  alpha?: string;
-  delta?: string;
+  alpha?: string | null;
+  delta?: string | null;
   icrsRA?: number;
   icrsRAError?: number;
   icrsDec?: number;
@@ -74,11 +74,11 @@ const Coordinates = (props: CoordinatesProps) => {
             coordinates={[
               {
                 name: t('star_details.coordinates.alpha'),
-                value: props.alpha,
+                value: props.alpha ? props.alpha : undefined,
               },
               {
                 name: t('star_details.coordinates.delta'),
-                value: props.delta,
+                value: props.delta ? props.delta : undefined,
               },
             ]}
             displayedColumns={['value']}

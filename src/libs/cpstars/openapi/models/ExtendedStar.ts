@@ -37,19 +37,19 @@ export interface ExtendedStar {
      * @type {string}
      * @memberof ExtendedStar
      */
-    consideredCategoryAffiliationProbabilityFlag?: string;
+    consideredCategoryAffiliationProbabilityFlag?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ExtendedStar
      */
-    renson?: string;
+    renson?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ExtendedStar
      */
-    binarySystemComponent?: string;
+    binarySystemComponent?: string | null;
     /**
      * 
      * @type {number}
@@ -91,13 +91,13 @@ export interface ExtendedStar {
      * @type {string}
      * @memberof ExtendedStar
      */
-    alpha?: string;
+    alpha?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ExtendedStar
      */
-    delta?: string;
+    delta?: string | null;
     /**
      * 
      * @type {ExternalDetails}

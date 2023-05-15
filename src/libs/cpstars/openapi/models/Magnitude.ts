@@ -67,19 +67,19 @@ export interface Magnitude {
      * @type {number}
      * @memberof Magnitude
      */
-    error?: number;
+    error?: number | null;
     /**
      * 
      * @type {string}
      * @memberof Magnitude
      */
-    quality?: string;
+    quality?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Magnitude
      */
-    uncertaintyFlag?: string;
+    uncertaintyFlag?: string | null;
 }
 
 /**

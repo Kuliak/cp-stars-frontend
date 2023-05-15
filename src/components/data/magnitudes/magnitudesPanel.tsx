@@ -45,7 +45,7 @@ const MagnitudesPanel = (props: MagnitudesProps) => {
                           type={'char'}
                           best={'A'}
                           worst={'E'}
-                          value={row.quality}
+                          value={row.quality ? row.quality : undefined}
                         />
                       </TableCell>
                     </TableRow>

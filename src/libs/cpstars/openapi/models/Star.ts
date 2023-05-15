@@ -30,19 +30,19 @@ export interface Star {
      * @type {string}
      * @memberof Star
      */
-    consideredCategoryAffiliationProbabilityFlag?: string;
+    consideredCategoryAffiliationProbabilityFlag?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Star
      */
-    renson?: string;
+    renson?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Star
      */
-    binarySystemComponent?: string;
+    binarySystemComponent?: string | null;
     /**
      * 
      * @type {number}
@@ -84,13 +84,13 @@ export interface Star {
      * @type {string}
      * @memberof Star
      */
-    alpha?: string;
+    alpha?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Star
      */
-    delta?: string;
+    delta?: string | null;
 }
 
 /**

@@ -248,10 +248,11 @@ const en = () => {
           wavelength: 'Wavelength [Angstrom]',
         },
         star_datasource_attributes: {
+          title: 'Attributes',
           attribute_description: 'description',
           attribute_name: 'attribute',
           datasource_name: 'datasource',
-          title: 'Attributes',
+          magnitude_name: 'magnitude',
           value: 'value',
         },
         vizier_metadata: {

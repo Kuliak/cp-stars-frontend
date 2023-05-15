@@ -13,6 +13,7 @@ models/ExternalDetails.ts
 models/Identifier.ts
 models/LightCurveMeasurement.ts
 models/Magnitude.ts
+models/MagnitudeAttribute.ts
 models/Motion.ts
 models/RadialVelocity.ts
 models/SpectrumMeasurement.ts

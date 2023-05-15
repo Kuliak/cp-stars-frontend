@@ -43,7 +43,7 @@ export interface Identifier {
      * @type {Star}
      * @memberof Identifier
      */
-    star?: Star;
+    star: Star;
     /**
      * 
      * @type {DataSource}
@@ -70,6 +70,7 @@ export interface Identifier {
 export function instanceOfIdentifier(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "star" in value;
     isInstance = isInstance && "datasource" in value;
     isInstance = isInstance && "name" in value;
 
@@ -87,7 +88,7 @@ export function IdentifierFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return {
         
         'id': json['id'],
-        'star': !exists(json, 'star') ? undefined : StarFromJSON(json['star']),
+        'star': StarFromJSON(json['star']),
         'datasource': DataSourceFromJSON(json['datasource']),
         'name': json['name'],
         'defined': !exists(json, 'defined') ? undefined : json['defined'],

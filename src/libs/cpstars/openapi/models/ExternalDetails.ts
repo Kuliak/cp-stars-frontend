@@ -31,37 +31,37 @@ export interface ExternalDetails {
      * @type {number}
      * @memberof ExternalDetails
      */
-    effectiveTemperature?: number;
+    effectiveTemperature?: number | null;
     /**
      * 
      * @type {string}
      * @memberof ExternalDetails
      */
-    effectiveTemperatureUnit?: string;
+    effectiveTemperatureUnit?: string | null;
     /**
      * 
      * @type {number}
      * @memberof ExternalDetails
      */
-    redshift?: number;
+    redshift?: number | null;
     /**
      * 
      * @type {Array<VizierTable>}
      * @memberof ExternalDetails
      */
-    vizierTables?: Array<VizierTable>;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExternalDetails
-     */
-    effectiveTemperatureValues?: string;
+    vizierTables?: Array<VizierTable> | null;
     /**
      * 
      * @type {string}
      * @memberof ExternalDetails
      */
     effectiveTEMPERATUREVALUESREGEX?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExternalDetails
+     */
+    effectiveTemperatureValues?: string;
 }
 
 /**
@@ -86,9 +86,9 @@ export function ExternalDetailsFromJSONTyped(json: any, ignoreDiscriminator: boo
         'effectiveTemperature': !exists(json, 'effectiveTemperature') ? undefined : json['effectiveTemperature'],
         'effectiveTemperatureUnit': !exists(json, 'effectiveTemperatureUnit') ? undefined : json['effectiveTemperatureUnit'],
         'redshift': !exists(json, 'redshift') ? undefined : json['redshift'],
-        'vizierTables': !exists(json, 'vizierTables') ? undefined : ((json['vizierTables'] as Array<any>).map(VizierTableFromJSON)),
-        'effectiveTemperatureValues': !exists(json, 'effectiveTemperatureValues') ? undefined : json['effectiveTemperatureValues'],
+        'vizierTables': !exists(json, 'vizierTables') ? undefined : (json['vizierTables'] === null ? null : (json['vizierTables'] as Array<any>).map(VizierTableFromJSON)),
         'effectiveTEMPERATUREVALUESREGEX': !exists(json, 'effective_TEMPERATURE_VALUES_REGEX') ? undefined : json['effective_TEMPERATURE_VALUES_REGEX'],
+        'effectiveTemperatureValues': !exists(json, 'effectiveTemperatureValues') ? undefined : json['effectiveTemperatureValues'],
     };
 }
 
@@ -104,9 +104,9 @@ export function ExternalDetailsToJSON(value?: ExternalDetails | null): any {
         'effectiveTemperature': value.effectiveTemperature,
         'effectiveTemperatureUnit': value.effectiveTemperatureUnit,
         'redshift': value.redshift,
-        'vizierTables': value.vizierTables === undefined ? undefined : ((value.vizierTables as Array<any>).map(VizierTableToJSON)),
-        'effectiveTemperatureValues': value.effectiveTemperatureValues,
+        'vizierTables': value.vizierTables === undefined ? undefined : (value.vizierTables === null ? null : (value.vizierTables as Array<any>).map(VizierTableToJSON)),
         'effective_TEMPERATURE_VALUES_REGEX': value.effectiveTEMPERATUREVALUESREGEX,
+        'effectiveTemperatureValues': value.effectiveTemperatureValues,
     };
 }
 

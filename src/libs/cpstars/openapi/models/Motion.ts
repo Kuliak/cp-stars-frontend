@@ -43,7 +43,7 @@ export interface Motion {
      * @type {Star}
      * @memberof Motion
      */
-    star?: Star;
+    star: Star;
     /**
      * 
      * @type {DataSource}
@@ -55,37 +55,37 @@ export interface Motion {
      * @type {number}
      * @memberof Motion
      */
-    properMotionRa?: number;
+    properMotionRa?: number | null;
     /**
      * 
      * @type {number}
      * @memberof Motion
      */
-    properMotionRaError?: number;
+    properMotionRaError?: number | null;
     /**
      * 
      * @type {number}
      * @memberof Motion
      */
-    properMotionDec?: number;
+    properMotionDec?: number | null;
     /**
      * 
      * @type {number}
      * @memberof Motion
      */
-    properMotionDecError?: number;
+    properMotionDecError?: number | null;
     /**
      * 
      * @type {number}
      * @memberof Motion
      */
-    parallax?: number;
+    parallax?: number | null;
     /**
      * 
      * @type {number}
      * @memberof Motion
      */
-    parallaxError?: number;
+    parallaxError?: number | null;
     /**
      * 
      * @type {boolean}
@@ -100,6 +100,7 @@ export interface Motion {
 export function instanceOfMotion(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "star" in value;
     isInstance = isInstance && "datasource" in value;
 
     return isInstance;
@@ -116,7 +117,7 @@ export function MotionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Mo
     return {
         
         'id': json['id'],
-        'star': !exists(json, 'star') ? undefined : StarFromJSON(json['star']),
+        'star': StarFromJSON(json['star']),
         'datasource': DataSourceFromJSON(json['datasource']),
         'properMotionRa': !exists(json, 'properMotionRa') ? undefined : json['properMotionRa'],
         'properMotionRaError': !exists(json, 'properMotionRaError') ? undefined : json['properMotionRaError'],

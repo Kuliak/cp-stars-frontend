@@ -43,7 +43,7 @@ export interface RadialVelocity {
      * @type {Star}
      * @memberof RadialVelocity
      */
-    star?: Star;
+    star: Star;
     /**
      * 
      * @type {DataSource}
@@ -61,7 +61,7 @@ export interface RadialVelocity {
      * @type {number}
      * @memberof RadialVelocity
      */
-    radialVelocityError?: number;
+    radialVelocityError?: number | null;
 }
 
 /**
@@ -70,6 +70,7 @@ export interface RadialVelocity {
 export function instanceOfRadialVelocity(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "star" in value;
     isInstance = isInstance && "datasource" in value;
     isInstance = isInstance && "radialVelocity" in value;
 
@@ -87,7 +88,7 @@ export function RadialVelocityFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'id': json['id'],
-        'star': !exists(json, 'star') ? undefined : StarFromJSON(json['star']),
+        'star': StarFromJSON(json['star']),
         'datasource': DataSourceFromJSON(json['datasource']),
         'radialVelocity': json['radialVelocity'],
         'radialVelocityError': !exists(json, 'radialVelocityError') ? undefined : json['radialVelocityError'],

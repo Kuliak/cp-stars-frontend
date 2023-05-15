@@ -19,6 +19,7 @@ import type {
   Identifier,
   LightCurveMeasurement,
   Magnitude,
+  MagnitudeAttribute,
   Motion,
   RadialVelocity,
   SpectrumMeasurement,
@@ -35,6 +36,8 @@ import {
     LightCurveMeasurementToJSON,
     MagnitudeFromJSON,
     MagnitudeToJSON,
+    MagnitudeAttributeFromJSON,
+    MagnitudeAttributeToJSON,
     MotionFromJSON,
     MotionToJSON,
     RadialVelocityFromJSON,
@@ -75,6 +78,10 @@ export interface GetStarLightCurveMeasurementsRequest {
 
 export interface GetStarLightCurveMeasurementsByRensonRequest {
     rensonId: string;
+}
+
+export interface GetStarMagnitudeAttributesRequest {
+    starId: number;
 }
 
 export interface GetStarMagnitudesRequest {
@@ -351,6 +358,38 @@ export class StarsControllerApi extends runtime.BaseAPI {
      */
     async getStarLightCurveMeasurementsByRenson(requestParameters: GetStarLightCurveMeasurementsByRensonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LightCurveMeasurement>> {
         const response = await this.getStarLightCurveMeasurementsByRensonRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Response contains list of all magnitudes attributes belonging to given star.
+     * Get magnitudes attributes corresponding to specified star.
+     */
+    async getStarMagnitudeAttributesRaw(requestParameters: GetStarMagnitudeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<MagnitudeAttribute>>> {
+        if (requestParameters.starId === null || requestParameters.starId === undefined) {
+            throw new runtime.RequiredError('starId','Required parameter requestParameters.starId was null or undefined when calling getStarMagnitudeAttributes.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/stars/{starId}/magnitudes-attributes`.replace(`{${"starId"}}`, encodeURIComponent(String(requestParameters.starId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(MagnitudeAttributeFromJSON));
+    }
+
+    /**
+     * Response contains list of all magnitudes attributes belonging to given star.
+     * Get magnitudes attributes corresponding to specified star.
+     */
+    async getStarMagnitudeAttributes(requestParameters: GetStarMagnitudeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<MagnitudeAttribute>> {
+        const response = await this.getStarMagnitudeAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

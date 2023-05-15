@@ -9,6 +9,7 @@ export * from './ExternalDetails';
 export * from './Identifier';
 export * from './LightCurveMeasurement';
 export * from './Magnitude';
+export * from './MagnitudeAttribute';
 export * from './Motion';
 export * from './RadialVelocity';
 export * from './SpectrumMeasurement';
