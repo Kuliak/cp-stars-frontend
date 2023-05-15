@@ -247,7 +247,7 @@ export class StarsControllerApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/stars/{starId}/stardatasourceattributes`.replace(`{${"starId"}}`, encodeURIComponent(String(requestParameters.starId))),
+            path: `/stars/{starId}/star-datasource-attributes`.replace(`{${"starId"}}`, encodeURIComponent(String(requestParameters.starId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -471,7 +471,7 @@ export class StarsControllerApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/stars/{starId}/radialvelocities`.replace(`{${"starId"}}`, encodeURIComponent(String(requestParameters.starId))),
+            path: `/stars/{starId}/radial-velocities`.replace(`{${"starId"}}`, encodeURIComponent(String(requestParameters.starId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

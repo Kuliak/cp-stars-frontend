@@ -40,7 +40,7 @@ const StarDetailsMagnitudes = () => {
         </Typography>
       </div>
       {loading && <CircularProgress />}
-      {magnitudes && <Magnitudes magnitudes={magnitudes ? magnitudes : []} />};
+      {magnitudes && <Magnitudes magnitudes={magnitudes ? magnitudes : []} />}
     </div>
   );
 };

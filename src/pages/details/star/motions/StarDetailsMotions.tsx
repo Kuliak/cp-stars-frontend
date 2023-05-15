@@ -40,7 +40,7 @@ const StarDetailsMotions = () => {
         </Typography>
       </div>
       {loading && <CircularProgress />}
-      {motions && <MotionsList motions={motions ? motions : []} />};
+      {motions && <MotionsList motions={motions ? motions : []} />}
     </div>
   );
 };
