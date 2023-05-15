@@ -1,12 +1,13 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
-import { RadialVelocity, StarsControllerApi } from '../../../../libs/cpstars/openapi';
+import { RadialVelocity } from '../../../../libs/cpstars/openapi';
 import Typography from '@mui/material/Typography';
 import { CircularProgress } from '@mui/material';
 import RadialVelocities from '../../../../components/data/RadialVelocities';
 import { paths } from '../../../../shared/paths';
 import BackButton from '../../../../components/buttons/BackButton';
+import ApiCaller from '../../../../services/ApiCaller';
 
 const StarDetailsRadialVelocities = () => {
   const { id } = useParams();
@@ -14,7 +15,6 @@ const StarDetailsRadialVelocities = () => {
 
   const [loading, setLoading] = useState(true);
   const [radialVelocities, setRadialVelocities] = useState<RadialVelocity[] | null>(null);
-  const [starsController] = useState(() => new StarsControllerApi());
 
   useEffect(() => {
     setLoading(true);
@@ -23,7 +23,7 @@ const StarDetailsRadialVelocities = () => {
       return;
     }
 
-    starsController.getStarRadialVelocities({ starId: Number(id) }).then((data) => {
+    ApiCaller.starsController.getStarRadialVelocities({ starId: Number(id) }).then((data) => {
       setRadialVelocities(data);
       setLoading(false);
     });

@@ -6,7 +6,6 @@ import {
   VictoryLabel,
   VictoryLine,
   VictoryTooltip,
-  VictoryZoomContainer,
 } from 'victory';
 import { SpectrumMeasurement } from '../../../libs/cpstars/openapi';
 import { useTranslation } from 'react-i18next';
@@ -57,7 +56,7 @@ const Spectrum = (props: SpectrumProps) => {
               // @ts-ignore
               zoomDimension={'x'}
               // @ts-ignore
-              onZoomDomainChange={(domain, zoomProps) => {
+              onZoomDomainChange={(domain) => {
                 setBounds(domain.x[0] as number, domain.x[1] as number);
               }}
               // @ts-ignore

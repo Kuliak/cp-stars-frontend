@@ -1,6 +1,5 @@
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const Hosting = () => {
   const { t } = useTranslation();

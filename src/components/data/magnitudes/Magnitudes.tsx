@@ -8,8 +8,6 @@ import MagnitudesPanel from './magnitudesPanel';
 import Paper from '@mui/material/Paper';
 import TableContainer from '@mui/material/TableContainer';
 import { CircularProgress } from '@mui/material';
-import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -44,9 +42,6 @@ interface MagnitudesProps {
 }
 
 export default function Magnitudes(props: MagnitudesProps) {
-  const { id } = useParams();
-  const { t } = useTranslation();
-
   const [loading, setLoading] = useState(true);
   const [value, setValue] = React.useState(0);
 

@@ -47,6 +47,7 @@ export default function PersistentDrawerLeft() {
             <img
               className={'float-right'}
               src={require('../../assets/img/e-infra-cz-logo2-small.png')}
+              alt={'E-INFRA CZ'}
             />
           </div>
           <Typography
