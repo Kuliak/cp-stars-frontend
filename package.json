@@ -26,6 +26,7 @@
     "react-material-ui-searchbar": "1.0.4",
     "react-router-dom": "6.8.0",
     "react-scripts": "5.0.1",
+    "serve": "^14.2.0",
     "typescript": "^4.9.5",
     "victory": "^36.6.8",
     "web-vitals": "^2.1.4"
