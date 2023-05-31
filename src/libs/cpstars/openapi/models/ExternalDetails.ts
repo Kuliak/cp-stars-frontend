@@ -55,13 +55,13 @@ export interface ExternalDetails {
      * @type {string}
      * @memberof ExternalDetails
      */
-    effectiveTEMPERATUREVALUESREGEX?: string;
+    effectiveTemperatureValues?: string;
     /**
      * 
      * @type {string}
      * @memberof ExternalDetails
      */
-    effectiveTemperatureValues?: string;
+    effectiveTEMPERATUREVALUESREGEX?: string;
 }
 
 /**
@@ -87,8 +87,8 @@ export function ExternalDetailsFromJSONTyped(json: any, ignoreDiscriminator: boo
         'effectiveTemperatureUnit': !exists(json, 'effectiveTemperatureUnit') ? undefined : json['effectiveTemperatureUnit'],
         'redshift': !exists(json, 'redshift') ? undefined : json['redshift'],
         'vizierTables': !exists(json, 'vizierTables') ? undefined : (json['vizierTables'] === null ? null : (json['vizierTables'] as Array<any>).map(VizierTableFromJSON)),
-        'effectiveTEMPERATUREVALUESREGEX': !exists(json, 'effective_TEMPERATURE_VALUES_REGEX') ? undefined : json['effective_TEMPERATURE_VALUES_REGEX'],
         'effectiveTemperatureValues': !exists(json, 'effectiveTemperatureValues') ? undefined : json['effectiveTemperatureValues'],
+        'effectiveTEMPERATUREVALUESREGEX': !exists(json, 'effective_TEMPERATURE_VALUES_REGEX') ? undefined : json['effective_TEMPERATURE_VALUES_REGEX'],
     };
 }
 
@@ -105,8 +105,8 @@ export function ExternalDetailsToJSON(value?: ExternalDetails | null): any {
         'effectiveTemperatureUnit': value.effectiveTemperatureUnit,
         'redshift': value.redshift,
         'vizierTables': value.vizierTables === undefined ? undefined : (value.vizierTables === null ? null : (value.vizierTables as Array<any>).map(VizierTableToJSON)),
-        'effective_TEMPERATURE_VALUES_REGEX': value.effectiveTEMPERATUREVALUESREGEX,
         'effectiveTemperatureValues': value.effectiveTemperatureValues,
+        'effective_TEMPERATURE_VALUES_REGEX': value.effectiveTEMPERATUREVALUESREGEX,
     };
 }
 

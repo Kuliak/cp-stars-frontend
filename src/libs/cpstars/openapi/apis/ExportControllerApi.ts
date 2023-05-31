@@ -134,4 +134,32 @@ export class ExportControllerApi extends runtime.BaseAPI {
         return await response.value();
     }
 
+    /**
+     * Return list of all supported (possible) empty value representations. Only these representations can be used for export.
+     * Return list of all supported (possible) empty value representations.
+     */
+    async getSupportedEmptyValueRepresentationsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/export/csv/empty-value-repr`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * Return list of all supported (possible) empty value representations. Only these representations can be used for export.
+     * Return list of all supported (possible) empty value representations.
+     */
+    async getSupportedEmptyValueRepresentations(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.getSupportedEmptyValueRepresentationsRaw(initOverrides);
+        return await response.value();
+    }
+
 }

@@ -13,11 +13,7 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import { DEFAULT_RESET_DEC, DEFAULT_RESET_RA, DEFAULT_RESET_RADIUS } from '../../shared/Constants';
 import { paths } from '../../shared/paths';
@@ -90,17 +86,6 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            color="primary"
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{
-              'aria-label': 'select all desserts',
-            }}
-          />
-        </TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -160,19 +145,6 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           component="div">
           CP Stars
         </Typography>
-      )}
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
       )}
     </Toolbar>
   );
@@ -363,13 +335,12 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
                   onChange={(searchVal) => setFilterRadius(searchVal.target.value)}
                 />
                 <Tooltip
-                  title={selected.length === 0 ? 'Select stars for export first' : ''}
+                  title={''}
                   style={{ alignSelf: 'end' }}>
                   <span>
                     <Button
                       variant="contained"
                       endIcon={<IosShareIcon />}
-                      disabled={selected.length === 0}
                       onClick={handleExport}
                       className="flex-button"
                       sx={{ bottom: 0, marginRight: '10px', padding: '12px 16px 12px 16px' }}>
@@ -413,18 +384,26 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
                             key={row.id}
                             selected={isItemSelected}
                             style={{ cursor: 'pointer' }}>
-                            <TableCell padding="checkbox">
-                              <Checkbox
-                                color="primary"
-                                checked={isItemSelected}
-                                onClick={(event) => handleCheckboxClick(event, row.id)}
-                                inputProps={{
-                                  'aria-labelledby': labelId,
-                                }}
-                              />
+                            {/*<TableCell padding="checkbox">*/}
+                            {/*  <Checkbox*/}
+                            {/*    color="primary"*/}
+                            {/*    checked={isItemSelected}*/}
+                            {/*    onClick={(event) => handleCheckboxClick(event, row.id)}*/}
+                            {/*    inputProps={{*/}
+                            {/*      'aria-labelledby': labelId,*/}
+                            {/*    }}*/}
+                            {/*  />*/}
+                            {/*</TableCell>*/}
+                            <TableCell
+                              padding="normal"
+                              align="left">
+                              {row.id}
                             </TableCell>
-                            <TableCell align="left">{row.id}</TableCell>
-                            <TableCell align="left">{row.renson}</TableCell>
+                            <TableCell
+                              padding="normal"
+                              align="left">
+                              {row.renson}
+                            </TableCell>
                             <TableCell align="left">
                               {row.consideredCategoryAffiliationProbabilityFlag}
                             </TableCell>
@@ -454,7 +433,7 @@ export default function BasicInfoStarsTable(props: BasicInfoStarsTableProps) {
       )}
       {isExportDialogOpen && (
         <ExportStarsCSVDialog
-          starIds={selected}
+          starIds={props.originalRows.map((row) => row.id)}
           isOpen={isExportDialogOpen}
           onClose={() => setExportDialogOpen(false)}
         />
