@@ -26,10 +26,13 @@ jobs:
         run: npm run build
 
       - name: "Package app"
+        run: tar -zcvf build.tar.gz build/
+
+      - name: "Upload artifact"
         uses: actions/upload-artifact@v2
         with:
-          name: cpstars-frontend
-          path: build/
+          name: cpstars-frontend-build
+          path: build.tar.gz
 
       - name: "Create release"
         id: create_release
@@ -42,3 +45,14 @@ jobs:
           body: "Release ${{ github.ref }}"
           draft: false
           prerelease: false
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+
+      - name: "Upload artifact to release"
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build.tar.gz
+          asset_name: cpstars-frontend-build.tgz
+          asset_content_type: application/x-gzip
